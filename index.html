@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="app-version" content="20260722c-ACADEMIA-V3.1">
+<meta name="app-version" content="20260722g-ACADEMIA-V3.5">
 <title>NBS Academia</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0f1430">
@@ -18,27 +18,58 @@
   .cab-tit{font-size:19px;font-weight:800;line-height:1.1}
   .cab-sub{font-size:11.5px;color:#9aa2cc;margin-top:2px}
 
+  /* ── MENU HAMBURGUESA ── letras grandes, pedido por Sensei ── */
+  .hb{background:none;border:none;color:#E3B23C;font-size:30px;line-height:1;cursor:pointer;padding:2px 6px;margin-left:auto;flex:0 0 auto}
+  .menuov{display:none;position:fixed;inset:0;background:rgba(6,9,26,.75);z-index:80}
+  .menuov.on{display:block}
+  .menupan{position:fixed;top:0;left:0;bottom:0;width:84%;max-width:340px;background:#141a3c;border-right:1px solid #313a7d;z-index:81;transform:translateX(-102%);transition:transform .25s ease;overflow-y:auto;padding-bottom:40px}
+  .menupan.on{transform:translateX(0)}
+  .menucab{display:flex;align-items:center;gap:11px;padding:16px 14px;border-bottom:1px solid #2a326a;background:linear-gradient(180deg,#1a2350,#141a3c)}
+  .mcerrar2{margin-left:auto;background:#2c356f;border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer;flex:0 0 auto}
+  .msec{padding:16px 16px 7px;font-size:12.5px;font-weight:800;color:#E3B23C;letter-spacing:1.2px}
+  .mitem{display:flex;align-items:center;gap:14px;width:100%;padding:17px 16px;background:none;border:none;border-bottom:1px solid #232a5c;color:#f3f4fb;font-size:17.5px;font-weight:700;text-align:left;cursor:pointer;font-family:inherit;line-height:1.25}
+  .mitem:active{background:#1e2658}
+  .mitem .mi{font-size:24px;width:32px;text-align:center;flex:0 0 auto}
   .caja{margin:14px;background:linear-gradient(160deg,#232c5e,#1a2350);border:1px solid #313a7d;border-radius:16px;padding:16px 14px;box-shadow:0 6px 20px rgba(0,0,0,.3)}
   .lbl{font-size:11px;color:#E3B23C;font-weight:800;letter-spacing:1px;text-transform:uppercase}
   .tit{font-size:21px;font-weight:800;margin:6px 0 3px;line-height:1.2}
-  .sub{font-size:12.5px;color:#9aa2cc;min-height:16px}
+  .sub{font-size:13.5px;color:#9aa2cc;min-height:16px}
 
-  .ctrl{display:flex;align-items:center;justify-content:center;gap:18px;margin:16px 0 6px}
-  .bsec{width:56px;height:56px;border-radius:50%;background:#2c356f;border:none;color:#fff;font-size:23px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .ctrl{display:flex;align-items:center;justify-content:center;gap:9px;margin:16px 0 6px}
+  .bsec{flex:0 0 auto;width:48px;height:48px;min-width:48px;border-radius:50%;background:#2c356f;border:none;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;line-height:1}
   .bsec:active{background:#39439a}
-  .bplay{width:84px;height:84px;border-radius:50%;background:linear-gradient(145deg,#f0c04a,#d99b1f);border:none;color:#161d44;font-size:36px;cursor:pointer;box-shadow:0 5px 16px rgba(227,178,60,.45);display:flex;align-items:center;justify-content:center}
+  .bplay{flex:0 0 auto;width:78px;height:78px;min-width:78px;border-radius:50%;background:linear-gradient(145deg,#f0c04a,#d99b1f);border:none;color:#161d44;font-size:32px;cursor:pointer;box-shadow:0 5px 16px rgba(227,178,60,.45);display:flex;align-items:center;justify-content:center;padding:0;line-height:1}
   .bplay:active{transform:scale(.96)}
-  .bsalto{position:relative;width:52px;height:52px;font-size:22px}
-  .bsalto span{position:absolute;font-size:9.5px;font-weight:800;top:20px;left:0;right:0;text-align:center}
+  .bsalto{flex:0 0 auto;width:54px;min-width:54px;height:50px;border-radius:15px;flex-direction:column;gap:0;padding:0}
+  .bsalto .fl{font-size:21px;line-height:1}
+  .bsalto .nu{font-size:11.5px;font-weight:800;line-height:1;margin-top:1px}
   .rango{width:100%;margin:12px 0 0;height:26px;background:transparent;-webkit-appearance:none;appearance:none}
   .rango::-webkit-slider-runnable-track{height:7px;background:#2c356f;border-radius:5px}
   .rango::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#E3B23C;margin-top:-8px;border:2px solid #161d44}
   .rango::-moz-range-track{height:7px;background:#2c356f;border-radius:5px}
   .rango::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#E3B23C;border:2px solid #161d44}
+  /* En telefonos angostos los botones se achican solos, para que
+     nunca se aprieten ni se deformen. */
+  @media (max-width:400px){
+    .ctrl{gap:6px}
+    .bsec{width:44px;height:44px;min-width:44px;font-size:18px}
+    .bplay{width:70px;height:70px;min-width:70px;font-size:29px}
+    .bsalto{width:50px;min-width:50px;height:46px}
+    .bsalto .fl{font-size:19px}
+    .bsalto .nu{font-size:11px}
+  }
+  @media (max-width:345px){
+    .ctrl{gap:4px}
+    .bsec{width:40px;height:40px;min-width:40px;font-size:16px}
+    .bplay{width:62px;height:62px;min-width:62px;font-size:26px}
+    .bsalto{width:45px;min-width:45px;height:42px}
+    .bsalto .fl{font-size:17px}
+    .bsalto .nu{font-size:10px}
+  }
   .nota-pant{text-align:center;font-size:12px;color:#8a92bd;margin-top:8px}
 
   .chips{display:flex;gap:7px;justify-content:center;margin-top:12px;flex-wrap:wrap}
-  .chip{background:#20285a;border:1px solid #313a7d;color:#c7cdf0;padding:6px 13px;border-radius:18px;font-size:12.5px;font-weight:700;cursor:pointer}
+  .chip{background:#20285a;border:1px solid #313a7d;color:#c7cdf0;padding:8px 15px;border-radius:18px;font-size:14px;font-weight:700;cursor:pointer}
   .chip.on{background:#E3B23C;border-color:#E3B23C;color:#161d44}
 
   .barra{height:9px;background:#1b2250;border-radius:6px;overflow:hidden;margin:10px 0 6px}
@@ -46,15 +77,15 @@
   .stats{display:flex;gap:8px;margin-top:10px}
   .stat{flex:1;background:#171e46;border:1px solid #262e63;border-radius:11px;padding:9px 6px;text-align:center}
   .stat b{display:block;font-size:19px;color:#E3B23C;line-height:1.1}
-  .stat span{font-size:10.5px;color:#9aa2cc}
+  .stat span{font-size:11.5px;color:#9aa2cc}
 
-  .busca{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #313a7d;background:#171e46;color:#f3f4fb;font-size:15px;outline:none}
+  .busca{width:100%;padding:13px 14px;border-radius:12px;border:1px solid #313a7d;background:#171e46;color:#f3f4fb;font-size:16px;outline:none}
   .busca::placeholder{color:#7b83b5}
 
   .secn{margin:18px 16px 8px;font-size:12px;font-weight:800;color:#9aa2cc;letter-spacing:1px;text-transform:uppercase}
   .mod-cab{display:flex;align-items:center;gap:9px;margin:16px 14px 8px}
-  .mod-pill{font-size:12px;font-weight:800;padding:5px 12px;border-radius:16px;color:#fff}
-  .mod-cnt{font-size:11.5px;color:#7b83b5}
+  .mod-pill{font-size:13px;font-weight:800;padding:5px 12px;border-radius:16px;color:#fff}
+  .mod-cnt{font-size:12.5px;color:#7b83b5}
 
   .lista{margin:0 12px}
   .lec{display:flex;align-items:center;gap:11px;background:#171e46;border:1px solid #262e63;border-radius:13px;padding:12px;margin-bottom:8px;cursor:pointer}
@@ -63,11 +94,11 @@
   .lec.hecha .lnum{background:#2E7D32;color:#fff}
   .lnum{width:33px;height:33px;border-radius:9px;flex-shrink:0;background:#2a336f;color:#E3B23C;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
   .lec.on .lnum{background:#E3B23C;color:#161d44}
-  .ltit{font-size:15px;font-weight:600;line-height:1.25;flex:1}
+  .ltit{font-size:16.5px;font-weight:600;line-height:1.25;flex:1}
   .lico{font-size:17px;flex-shrink:0;color:#7b83b5}
 
   .bfila{display:flex;gap:7px;margin-top:12px}
-  .btn{flex:1;padding:11px 6px;border-radius:11px;border:1px solid #313a7d;background:#20285a;color:#dfe3fb;font-size:13px;font-weight:700;cursor:pointer}
+  .btn{flex:1;padding:13px 6px;border-radius:11px;border:1px solid #313a7d;background:#20285a;color:#dfe3fb;font-size:15px;font-weight:700;cursor:pointer}
   .btn:active{background:#2c356f}
   .btn.oro{background:#E3B23C;border-color:#E3B23C;color:#161d44}
 
@@ -110,6 +141,33 @@
     <div class="cab-tit">NBS Academia</div>
     <div class="cab-sub">Aprende de negocio mientras trabajas</div>
   </div>
+  <button class="hb" id="bhb" title="Menu">&#9776;</button>
+</div>
+
+<!-- ══ MENU HAMBURGUESA ══ -->
+<div class="menuov" id="menuov"></div>
+<div class="menupan" id="menupan">
+  <div class="menucab">
+    <div class="escudo">NBS</div>
+    <div>
+      <div style="font-size:18px;font-weight:800">Men&uacute;</div>
+      <div style="font-size:12.5px;color:#9aa2cc">NBS Academia</div>
+    </div>
+    <button class="mcerrar2" id="bcerrarmenu">&times;</button>
+  </div>
+
+  <div class="msec">ESCUCHAR</div>
+  <button class="mitem" id="m-repido"><span class="mi">&#128260;</span>Repaso r&aacute;pido</button>
+  <button class="mitem" id="m-dia"><span class="mi">&#127775;</span>Lecci&oacute;n del d&iacute;a</button>
+  <button class="mitem" id="m-voz"><span class="mi">&#128266;</span>Cambiar voz</button>
+  <button class="mitem" id="m-temp"><span class="mi">&#9201;</span>Temporizador</button>
+
+  <div class="msec">MATERIALES</div>
+  <button class="mitem" id="m-hoja"><span class="mi">&#128196;</span>Hoja de bolsillo</button>
+  <button class="mitem" id="m-curso"><span class="mi">&#128424;</span>Imprimir curso completo</button>
+
+  <div class="msec">RECORDATORIOS</div>
+  <button class="mitem" id="m-record"><span class="mi">&#128276;</span>Recordarme estudiar</button>
 </div>
 
 <div id="nudge" style="display:none;margin:12px 14px;padding:12px 14px;border-radius:12px;background:#3a2320;border:1px solid #a05a2c;color:#f0c78a;font-size:14px;line-height:1.4"></div>
@@ -121,9 +179,9 @@
   <div id="psub" class="sub">&nbsp;</div>
   <div class="ctrl">
     <button class="bsec" id="bant" title="Leccion anterior">&#9198;</button>
-    <button class="bsec bsalto" id="batras" title="Retroceder 15 segundos">&#8630;<span>15</span></button>
+    <button class="bsec bsalto" id="batras" title="Retroceder 10 segundos"><span class="fl">&#8634;</span><span class="nu">10</span></button>
     <button class="bplay" id="bplay">&#9654;</button>
-    <button class="bsec bsalto" id="badel" title="Adelantar 15 segundos">&#8631;<span>15</span></button>
+    <button class="bsec bsalto" id="badel" title="Adelantar 10 segundos"><span class="fl">&#8635;</span><span class="nu">10</span></button>
     <button class="bsec" id="bsig" title="Leccion siguiente">&#9197;</button>
   </div>
   <input type="range" id="pos" min="0" max="0" value="0" step="1" class="rango">
@@ -141,6 +199,7 @@
     <button class="btn" id="brepaso">&#10067; Repaso</button>
     <button class="btn" id="bnota">&#128221; Nota</button>
   </div>
+
 </div>
 
 <!-- ══ PROGRESO ══ -->
@@ -153,18 +212,8 @@
     <div class="stat"><b id="sracha">0</b><span>dias seguidos</span></div>
     <div class="stat"><b id="sfav">0</b><span>favoritas</span></div>
   </div>
-  <div class="bfila">
-    <button class="btn oro" id="bdia">&#127775; Leccion del dia</button>
-    <button class="btn" id="btemp">&#9201; Temporizador</button>
-  </div>
-  <div class="bfila">
-    <button class="btn oro" id="brepido">&#128260; Repaso rapido</button>
-    <button class="btn" id="brecord">&#128276; Recordarme</button>
-  </div>
-  <div class="bfila">
-    <button class="btn" id="bhoja">&#128196; Hoja de bolsillo</button>
-    <button class="btn" id="bimpcurso">&#128424; Curso completo</button>
-  </div>
+
+
 </div>
 
 <!-- ══ BUSCADOR Y FILTROS ══ -->
@@ -209,12 +258,40 @@ var tocando = false, tempRestante = 0, arranque = 0;
 
 function elegirVoz(){
   if(!synth) return null;
-  var v = synth.getVoices()||[], p=['es-us','es-mx','es-419','es-es','es'];
+  var v = synth.getVoices()||[];
+  // 1) Si el usuario escogio una voz, usar esa
+  var guardada = LS('nbsa_voz','');
+  if(guardada){
+    for(var k=0;k<v.length;k++){ if((v[k].voiceURI||v[k].name)===guardada) return v[k]; }
+  }
+  // 2) Si no, buscar la mejor voz en espanol que tenga el telefono
+  var p=['es-us','es-mx','es-419','es-es','es'];
   for(var i=0;i<p.length;i++) for(var j=0;j<v.length;j++)
     if((v[j].lang||'').toLowerCase().indexOf(p[i])===0) return v[j];
   return null;
 }
 if(synth){ voz=elegirVoz(); if(typeof synth.onvoiceschanged!=='undefined') synth.onvoiceschanged=function(){ voz=elegirVoz(); }; }
+
+/* Nombres bonitos para cada codigo de idioma */
+var PAISES = {
+ 'es-ES':'Espa\u00f1ol (Espa\u00f1a)','es-US':'Espa\u00f1ol (Estados Unidos)','es-MX':'Espa\u00f1ol (M\u00e9xico)',
+ 'es-AR':'Espa\u00f1ol (Argentina)','es-CO':'Espa\u00f1ol (Colombia)','es-CL':'Espa\u00f1ol (Chile)',
+ 'es-DO':'Espa\u00f1ol (Rep\u00fablica Dominicana)','es-PR':'Espa\u00f1ol (Puerto Rico)','es-PE':'Espa\u00f1ol (Per\u00fa)',
+ 'es-VE':'Espa\u00f1ol (Venezuela)','es-419':'Espa\u00f1ol (Latinoam\u00e9rica)','es-CU':'Espa\u00f1ol (Cuba)',
+ 'es-GT':'Espa\u00f1ol (Guatemala)','es-EC':'Espa\u00f1ol (Ecuador)','es-CR':'Espa\u00f1ol (Costa Rica)',
+ 'es-PA':'Espa\u00f1ol (Panam\u00e1)','es-UY':'Espa\u00f1ol (Uruguay)','es-PY':'Espa\u00f1ol (Paraguay)',
+ 'es-BO':'Espa\u00f1ol (Bolivia)','es-HN':'Espa\u00f1ol (Honduras)','es-NI':'Espa\u00f1ol (Nicaragua)',
+ 'es-SV':'Espa\u00f1ol (El Salvador)','es':'Espa\u00f1ol',
+ 'en-US':'Ingl\u00e9s (Estados Unidos)','en-GB':'Ingl\u00e9s (Reino Unido)','pt-BR':'Portugu\u00e9s (Brasil)'
+};
+function nombrePais(lang){
+  if(!lang) return 'Otro';
+  var l = lang.replace('_','-');
+  if(PAISES[l]) return PAISES[l];
+  var base = l.split('-')[0];
+  if(PAISES[base]) return PAISES[base]+' ('+l+')';
+  return l;
+}
 
 function partir(t){
   var c = t.match(/[^.!?]+[.!?]*/g)||[t], r=[];
@@ -331,7 +408,7 @@ function botonUI(){
 /* ═══════════ Retroceder / adelantar dentro de la leccion ═══════════ */
 /* Cada pedazo es una oracion. Se calcula cuantos segundos dura aproximadamente
    por la cantidad de palabras, para poder saltar 15 segundos hacia atras o
-   hacia adelante como en un reproductor normal. */
+   hacia adelante como en un reproductor normal. Son 10 segundos, pedido por Sensei. */
 function segChunk(t){ return t.split(/\s+/).length / (2.6*vel); }
 function segHasta(n){ var s=0; for(var i=0;i<n && i<chunks.length;i++) s+=segChunk(chunks[i]); return s; }
 function mmss(s){ s=Math.max(0,Math.round(s)); var m=Math.floor(s/60); var q=s%60; return m+':'+(q<10?'0':'')+q; }
@@ -479,6 +556,64 @@ function responder(btn,qi,oi,cor){
   }
 }
 
+/* ═══════════ Escoger la voz ═══════════ */
+var _verTodasVoces = false;
+function verVoces(){
+  if(!synth){ alert('Este telefono no soporta lectura por voz.'); return; }
+  var todas = synth.getVoices()||[];
+  if(!todas.length){
+    abrirModal('<h3 class="mtit">&#128266; Voz de la Academia</h3>'
+      +'<p style="font-size:14.5px;color:#c7cdf0;line-height:1.6;margin-top:10px">Tu telefono todavia no reporta las voces. Cierra y vuelve a abrir la app, y prueba otra vez.</p>');
+    return;
+  }
+  var lista = _verTodasVoces ? todas : todas.filter(function(v){ return (v.lang||'').toLowerCase().indexOf('es')===0; });
+  if(!lista.length){ lista = todas; _verTodasVoces = true; }
+  // ordenar por idioma
+  lista = lista.slice().sort(function(a,b){ return (a.lang||'').localeCompare(b.lang||''); });
+  var actual = voz ? (voz.voiceURI||voz.name) : '';
+
+  var h = '<h3 class="mtit">&#128266; Voz de la Academia</h3>'
+    +'<p style="font-size:13.5px;color:#9aa2cc;line-height:1.5;margin:6px 0 14px">Estas son las voces instaladas en tu telefono. Toca una para escogerla, o "Probar" para oirla.</p>';
+  lista.forEach(function(v,i){
+    var sel = ((v.voiceURI||v.name)===actual);
+    h += '<div class="q" style="padding:11px;'+(sel?'border-color:#E3B23C;background:#1e2658':'')+'">'
+      +'<div style="display:flex;align-items:center;gap:9px">'
+      +'<div style="flex:1;min-width:0">'
+      +'<div style="font-size:15px;font-weight:700;color:'+(sel?'#E3B23C':'#f3f4fb')+'">'+(sel?'&#10003; ':'')+esc(nombrePais(v.lang))+'</div>'
+      +'<div style="font-size:11.5px;color:#8a92bd;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(v.name||'')+'</div>'
+      +'</div>'
+      +'<button class="btn" style="flex:0 0 auto;width:76px;padding:8px 4px" onclick="probarVoz('+i+')">&#9654; Probar</button>'
+      +'<button class="btn'+(sel?'':' oro')+'" style="flex:0 0 auto;width:76px;padding:8px 4px" onclick="usarVoz('+i+')">'+(sel?'Actual':'Usar')+'</button>'
+      +'</div></div>';
+  });
+  window._vocesLista = lista;
+  h += '<div class="bfila"><button class="btn" onclick="alternarTodasVoces()">'
+    + (_verTodasVoces ? '&#127474; Ver solo espa\u00f1ol' : '&#127760; Ver todos los idiomas') + '</button></div>'
+    + '<p style="font-size:12px;color:#7b83b5;line-height:1.55;margin-top:14px">'
+    + '<b style="color:#9aa2cc">No ves el acento que buscas?</b><br>'
+    + 'Las voces vienen del telefono, no de la app. Puedes instalar mas asi:<br>'
+    + 'Ajustes &rarr; Administracion general &rarr; Idioma y entrada &rarr; Texto a voz &rarr; motor de Google &rarr; el engranaje &rarr; Instalar datos de voz &rarr; Espa\u00f1ol. Ahi descargas los acentos disponibles.</p>';
+  abrirModal(h);
+}
+function alternarTodasVoces(){ _verTodasVoces = !_verTodasVoces; verVoces(); }
+function probarVoz(i){
+  var v = window._vocesLista[i];
+  if(!v || !synth) return;
+  try{ synth.cancel(); }catch(e){}
+  var u = new SpeechSynthesisUtterance('Hola Sensei. Asi suena esta voz en tu Academia.');
+  u.voice = v; u.lang = v.lang; u.rate = vel;
+  synth.speak(u);
+}
+function usarVoz(i){
+  var v = window._vocesLista[i];
+  if(!v) return;
+  voz = v;
+  SS('nbsa_voz', v.voiceURI||v.name);
+  try{ synth.cancel(); }catch(e){}
+  if(tocando){ cancelM=true; setTimeout(function(){ cancelM=false; hablar(); },200); }
+  verVoces();
+}
+
 /* ═══════════ Imprimir ═══════════ */
 function bloqueLeccion(i){
   var l=LEC[i], mo=MODULOS.filter(function(m){return m.n===l.m;})[0];
@@ -513,7 +648,8 @@ function temporizador(){
   if(n===null) return;
   n=parseInt(n,10);
   tempRestante = (n>0)? n : 0;
-  document.getElementById('btemp').innerHTML = tempRestante? '&#9201; '+tempRestante+' lecciones' : '&#9201; Temporizador';
+  var bt=document.getElementById('m-temp');
+  if(bt) bt.innerHTML = '<span class="mi">&#9201;</span>Temporizador'+(tempRestante? ' ('+tempRestante+')' : '');
 }
 
 /* ═══════════ Repaso rapido: solo LO ESENCIAL ═══════════ */
@@ -673,18 +809,26 @@ function vigilarHora(){
 document.getElementById('bplay').onclick=function(){ tocando?pausar():tocar(); };
 document.getElementById('bsig').onclick=function(){ if(iLec<LEC.length-1) cargar(iLec+1,tocando); };
 document.getElementById('bant').onclick=function(){ if(iLec>0) cargar(iLec-1,tocando); };
-document.getElementById('batras').onclick=function(){ saltar(-15); };
-document.getElementById('badel').onclick=function(){ saltar(15); };
+document.getElementById('batras').onclick=function(){ saltar(-10); };
+document.getElementById('badel').onclick=function(){ saltar(10); };
 document.getElementById('pos').oninput=function(){ irAChunk(parseInt(this.value,10)); };
 document.getElementById('babrir').onclick=verTexto;
 document.getElementById('bnota').onclick=verNota;
 document.getElementById('brepaso').onclick=verRepaso;
-document.getElementById('bdia').onclick=leccionDelDia;
-document.getElementById('btemp').onclick=temporizador;
-document.getElementById('bimpcurso').onclick=imprimirCurso;
-document.getElementById('brepido').onclick=repasoRapido;
-document.getElementById('brecord').onclick=verRecordatorios;
-document.getElementById('bhoja').onclick=hojaBolsillo;
+/* ── Menu hamburguesa ── */
+function abrirMenu(){ document.getElementById('menuov').classList.add('on'); document.getElementById('menupan').classList.add('on'); }
+function cerrarMenu(){ document.getElementById('menuov').classList.remove('on'); document.getElementById('menupan').classList.remove('on'); }
+function delMenu(fn){ return function(){ cerrarMenu(); setTimeout(fn, 220); }; }
+document.getElementById('bhb').onclick = abrirMenu;
+document.getElementById('menuov').onclick = cerrarMenu;
+document.getElementById('bcerrarmenu').onclick = cerrarMenu;
+document.getElementById('m-repido').onclick = delMenu(repasoRapido);
+document.getElementById('m-dia').onclick    = delMenu(leccionDelDia);
+document.getElementById('m-voz').onclick    = delMenu(verVoces);
+document.getElementById('m-temp').onclick   = delMenu(temporizador);
+document.getElementById('m-hoja').onclick   = delMenu(hojaBolsillo);
+document.getElementById('m-curso').onclick  = delMenu(imprimirCurso);
+document.getElementById('m-record').onclick = delMenu(verRecordatorios);
 document.getElementById('bq').oninput=function(){ consulta=this.value; pintarLista(); };
 
 Array.prototype.forEach.call(document.querySelectorAll('.chip[data-v]'),function(el){
