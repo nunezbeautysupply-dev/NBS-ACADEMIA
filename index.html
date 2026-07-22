@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="app-version" content="20260722g-ACADEMIA-V3.5">
+<meta name="app-version" content="20260722h-ACADEMIA-V3.6">
 <title>NBS Academia</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0f1430">
@@ -168,6 +168,9 @@
 
   <div class="msec">RECORDATORIOS</div>
   <button class="mitem" id="m-record"><span class="mi">&#128276;</span>Recordarme estudiar</button>
+
+  <div class="msec">AYUDA</div>
+  <button class="mitem" id="m-manual"><span class="mi">&#128216;</span>Manual de la app</button>
 </div>
 
 <div id="nudge" style="display:none;margin:12px 14px;padding:12px 14px;border-radius:12px;background:#3a2320;border:1px solid #a05a2c;color:#f0c78a;font-size:14px;line-height:1.4"></div>
@@ -556,6 +559,118 @@ function responder(btn,qi,oi,cor){
   }
 }
 
+/* ═══════════ MANUAL DE LA APP ═══════════ */
+var MANUAL = [
+ {t:'\u00bfQu\u00e9 es NBS Academia?', p:[
+   'Es tu escuela de negocio en AUDIO. El tel\u00e9fono te lee las lecciones en voz alta para que aprendas mientras manejas o trabajas la ruta, sin tener que detenerte a leer.',
+   'Tiene 48 lecciones en 8 m\u00f3dulos, unos 83 minutos de audio en total, todo pensado para tu negocio de beauty supply y barber\u00edas.'
+ ]},
+ {t:'C\u00f3mo empezar', l:[
+   'Toca el bot\u00f3n dorado grande de PLAY y empieza a leerte.',
+   'Tambi\u00e9n puedes tocar cualquier lecci\u00f3n de la lista de abajo y arranca en esa.',
+   'Al terminar una lecci\u00f3n, pasa sola a la siguiente, como un podcast.',
+   'La app se acuerda de d\u00f3nde te quedaste.'
+ ]},
+ {t:'Los botones del reproductor', l:[
+   'PLAY / PAUSA (dorado, el grande del centro): empieza o detiene la lectura.',
+   'Flecha con 10 a la izquierda: RETROCEDE 10 segundos. \u00danalo si te perdiste algo.',
+   'Flecha con 10 a la derecha: ADELANTA 10 segundos.',
+   'Doble flecha izquierda: lecci\u00f3n ANTERIOR.',
+   'Doble flecha derecha: lecci\u00f3n SIGUIENTE.',
+   'La barra dorada de abajo: arr\u00e1strala para ir a cualquier parte de la lecci\u00f3n. Te muestra el tiempo.'
+ ]},
+ {t:'Velocidad de la voz', p:[
+   'Debajo del reproductor hay tres botones: Lento, Normal y R\u00e1pido. Escoge el que mejor entiendas. R\u00e1pido te sirve para repasar algo que ya escuchaste.'
+ ]},
+ {t:'MUY IMPORTANTE para la ruta', l:[
+   'Ten el tel\u00e9fono en su soporte y CARGANDO.',
+   'La app mantiene la pantalla encendida sola mientras lee, para que el audio no se corte.',
+   'NO aprietes el bot\u00f3n de apagar el tel\u00e9fono: eso s\u00ed detiene el audio y la app no lo puede evitar.',
+   'Si te sales a otra app, se pausa. Regresas y sigue.'
+ ]},
+ {t:'Leer, Repaso y Nota', l:[
+   'LEER: te muestra el texto completo de la lecci\u00f3n, con tu ACCI\u00d3N de la semana. Desde ah\u00ed puedes imprimirla o marcarla como favorita.',
+   'REPASO: 3 preguntas para comprobar si te qued\u00f3 claro. Te dice cu\u00e1ntas acertaste.',
+   'NOTA: escribes una idea que se te ocurri\u00f3 escuchando, y queda guardada en esa lecci\u00f3n.'
+ ]},
+ {t:'El men\u00fa \u2630 (arriba a la derecha)', l:[
+   'REPASO R\u00c1PIDO: reproduce solo el m\u00f3dulo LO ESENCIAL, seguido. Son 15 minutos con lo m\u00e1s importante de todo. Ideal para repetirlo cada semana.',
+   'LECCI\u00d3N DEL D\u00cdA: un toque y te pone una que todav\u00eda no has escuchado.',
+   'CAMBIAR VOZ: escoge entre las voces que tiene tu tel\u00e9fono (Espa\u00f1a, Estados Unidos, M\u00e9xico...). Puedes probarlas antes.',
+   'TEMPORIZADOR: escuchas X lecciones y se apaga sola.',
+   'HOJA DE BOLSILLO: imprime UNA p\u00e1gina con lo clave (los 5 n\u00fameros, la f\u00f3rmula del precio, m\u00e1rgenes, punto de equilibrio, reglas del cr\u00e9dito). Peg\u00e1la en la van.',
+   'IMPRIMIR CURSO COMPLETO: saca las 48 lecciones en papel, como un manual.',
+   'RECORDARME ESTUDIAR: crea un recordatorio real en el calendario de tu tel\u00e9fono, con alarma, para que no se te olvide.'
+ ]},
+ {t:'Tu progreso', l:[
+   'La barra dorada muestra qu\u00e9 porcentaje del curso llevas.',
+   'MINUTOS: cu\u00e1nto tiempo has escuchado en total.',
+   'D\u00cdAS SEGUIDOS: tu racha. Si estudias todos los d\u00edas, sube.',
+   'FAVORITAS: cu\u00e1ntas lecciones marcaste con estrella.',
+   'Las lecciones ya escuchadas se marcan con un check verde.'
+ ]},
+ {t:'Buscador y filtros', l:[
+   'Escribe una palabra (por ejemplo: margen, cr\u00e9dito, ruta) y te muestra solo las lecciones que hablan de eso.',
+   'Filtros: TODAS, PENDIENTES (las que faltan), ESCUCHADAS, y FAVORITAS.'
+ ]},
+ {t:'Los 8 m\u00f3dulos', l:[
+   'LO ESENCIAL (7): lo m\u00e1s importante de todo. Rep\u00edtelo cada semana.',
+   'EL DINERO (6): ganancia, flujo de caja, punto de equilibrio, impuestos.',
+   'PRECIOS Y M\u00c1RGENES (5): la f\u00f3rmula, qu\u00e9 margen por producto, ofertas.',
+   'VENDER EN LA RUTA (5): m\u00e1s venta por visita, puerta fr\u00eda, objeciones, cierre.',
+   'CLIENTES (5): lealtad, servicio, quejas, referidos.',
+   'INVENTARIO Y SUPLIDORES (5): stock, van, producto muerto, negociar, cobrar.',
+   'CRECER (5): mentalidad, metas, empleado, expandir.',
+   'LOS GRANDES LIBROS (10): las ideas de los libros de negocio m\u00e1s conocidos, aplicadas a lo tuyo.'
+ ]},
+ {t:'Consejos para sacarle el m\u00e1ximo', l:[
+   'Empieza SIEMPRE por el m\u00f3dulo LO ESENCIAL, y rep\u00edtelo hasta que te salga solo.',
+   'Al terminar una lecci\u00f3n, haz su ACCI\u00d3N de la semana. Ah\u00ed est\u00e1 el verdadero valor.',
+   'Escucha una lecci\u00f3n al d\u00eda: son 2 minutos. En un mes ya diste la vuelta al curso.',
+   'Usa el Repaso para no olvidar. Lo que se repasa, se queda.',
+   'Imprime la hoja de bolsillo y peg\u00e1la donde la veas.'
+ ]},
+ {t:'Preguntas frecuentes', l:[
+   '\u00bfFunciona sin internet? S\u00ed, una vez que la abriste con internet al menos una vez.',
+   '\u00bfSuena con el tel\u00e9fono en el bolsillo? No. La pantalla debe estar encendida. Por eso conviene el soporte y el cargador.',
+   '\u00bfPor qu\u00e9 no veo el acento dominicano? Las voces vienen del tel\u00e9fono, no de la app. Puedes instalar m\u00e1s desde Ajustes, Idioma y entrada, Salida de texto a voz.',
+   '\u00bfSe pierde mi progreso? No, se guarda en tu tel\u00e9fono. Se perder\u00eda solo si borras los datos del navegador.',
+   '\u00bfPuedo ver el texto en vez de escuchar? S\u00ed, con el bot\u00f3n LEER.'
+ ]}
+];
+
+function verManual(){
+  var h = '<h3 class="mtit">&#128216; Manual de NBS Academia</h3>'
+        + '<p style="font-size:13.5px;color:#9aa2cc;margin:6px 0 8px">Todo lo que puede hacer tu Academia.</p>';
+  MANUAL.forEach(function(s){
+    h += '<div style="margin-top:18px"><div style="font-size:17.5px;font-weight:800;color:#E3B23C;line-height:1.3;margin-bottom:7px">'+esc(s.t)+'</div>';
+    if(s.p) s.p.forEach(function(x){ h += '<p style="font-size:16px;line-height:1.65;color:#e8ebff;margin:0 0 9px">'+esc(x)+'</p>'; });
+    if(s.l){
+      h += '<div>';
+      s.l.forEach(function(x){
+        h += '<div style="display:flex;gap:9px;margin-bottom:8px"><span style="color:#E3B23C;flex:0 0 auto">&#9679;</span><span style="font-size:16px;line-height:1.6;color:#e8ebff">'+esc(x)+'</span></div>';
+      });
+      h += '</div>';
+    }
+    h += '</div>';
+  });
+  h += '<div class="bfila" style="margin-top:18px"><button class="btn oro" onclick="imprimirManual()">&#128424; Imprimir el manual</button></div>';
+  abrirModal(h);
+}
+function imprimirManual(){
+  var h = '<h1>Manual de NBS Academia</h1><p style="color:#666">Nunez Beauty Supply</p>';
+  MANUAL.forEach(function(s){
+    h += '<div class="lecp"><h2>'+esc(s.t)+'</h2>';
+    if(s.p) s.p.forEach(function(x){ h += '<p>'+esc(x)+'</p>'; });
+    if(s.l){ h += '<ul style="font-size:12pt;line-height:1.6">'; s.l.forEach(function(x){ h += '<li style="margin-bottom:5pt">'+esc(x)+'</li>'; }); h += '</ul>'; }
+    h += '</div>';
+  });
+  h += '<div class="pie">Nunez Beauty Supply &mdash; Providence, Rhode Island</div>';
+  document.getElementById('imp').innerHTML = h;
+  cerrarModal();
+  setTimeout(function(){ window.print(); },250);
+}
+
 /* ═══════════ Escoger la voz ═══════════ */
 var _verTodasVoces = false;
 function verVoces(){
@@ -829,6 +944,7 @@ document.getElementById('m-temp').onclick   = delMenu(temporizador);
 document.getElementById('m-hoja').onclick   = delMenu(hojaBolsillo);
 document.getElementById('m-curso').onclick  = delMenu(imprimirCurso);
 document.getElementById('m-record').onclick = delMenu(verRecordatorios);
+document.getElementById('m-manual').onclick = delMenu(verManual);
 document.getElementById('bq').oninput=function(){ consulta=this.value; pintarLista(); };
 
 Array.prototype.forEach.call(document.querySelectorAll('.chip[data-v]'),function(el){
