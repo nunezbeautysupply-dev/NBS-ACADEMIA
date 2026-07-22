@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="app-version" content="20260721a-ACADEMIA-V1.0">
+<title>NBS Academia</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f1430">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin:0; padding:0; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #0f1430;
+    color: #f3f4fb;
+    min-height: 100vh;
+    padding-bottom: 30px;
+  }
+  .cab {
+    display:flex; align-items:center; gap:12px;
+    padding: 16px 18px;
+    background: linear-gradient(180deg, #161d44 0%, #0f1430 100%);
+    border-bottom: 1px solid #2a326a;
+    position: sticky; top:0; z-index: 5;
+  }
+  .escudo {
+    width:46px; height:46px; border-radius:10px; flex-shrink:0;
+    background: linear-gradient(145deg, #1a2350, #0c1130);
+    border: 2px solid #E3B23C;
+    display:flex; align-items:center; justify-content:center;
+    color:#E3B23C; font-weight:900; font-size:15px; letter-spacing:0.5px;
+  }
+  .cab-tit { font-size:20px; font-weight:800; line-height:1.1; }
+  .cab-sub { font-size:12px; color:#9aa2cc; margin-top:2px; }
+
+  .ahora {
+    margin: 16px;
+    background: linear-gradient(160deg, #232c5e 0%, #1a2350 100%);
+    border: 1px solid #313a7d;
+    border-radius: 18px;
+    padding: 18px 16px 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+  .ahora-lbl { font-size:12px; color:#E3B23C; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+  .ahora-tit { font-size:22px; font-weight:800; margin:6px 0 2px; line-height:1.15; }
+  .ahora-parte { font-size:13px; color:#9aa2cc; min-height:16px; }
+
+  .controles {
+    display:flex; align-items:center; justify-content:center; gap:22px;
+    margin: 18px 0 6px;
+  }
+  .btn-cir {
+    background:#2a336f; border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    color:#f3f4fb; border-radius:50%;
+  }
+  .btn-sec {
+    width:60px; height:60px; background:#2c356f; border:none; border-radius:50%;
+    color:#f3f4fb; font-size:24px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .btn-sec:active { background:#39439a; }
+  .btn-play {
+    width:88px; height:88px; border-radius:50%;
+    background: linear-gradient(145deg, #f0c04a, #d99b1f);
+    border:none; cursor:pointer; color:#161d44;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 6px 18px rgba(227,178,60,0.45);
+  }
+  .btn-play:active { transform: scale(0.96); }
+  .ico { display:block; }
+
+  .pantalla-nota {
+    text-align:center; font-size:12.5px; margin-top:10px;
+    color:#8a92bd;
+  }
+  .pantalla-on { color:#6cd08f; font-weight:700; }
+
+  .velos { display:flex; gap:8px; justify-content:center; margin-top:14px; }
+  .velo {
+    background:#20285a; border:1px solid #313a7d; color:#c7cdf0;
+    padding:7px 14px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer;
+  }
+  .velo.activa { background:#E3B23C; color:#161d44; border-color:#E3B23C; }
+
+  .sec-tit {
+    margin: 22px 18px 8px; font-size:13px; font-weight:700; letter-spacing:1px;
+    color:#9aa2cc; text-transform:uppercase;
+  }
+  .lista { margin: 0 12px; }
+  .lec {
+    display:flex; align-items:center; gap:12px;
+    background:#171e46; border:1px solid #262e63; border-radius:14px;
+    padding:14px 14px; margin-bottom:9px; cursor:pointer;
+  }
+  .lec:active { background:#1e2658; }
+  .lec.activa { border-color:#E3B23C; background:#1e2658; }
+  .lec-num {
+    width:34px; height:34px; border-radius:9px; flex-shrink:0;
+    background:#2a336f; color:#E3B23C; font-weight:800; font-size:15px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .lec.activa .lec-num { background:#E3B23C; color:#161d44; }
+  .lec-tit { font-size:15.5px; font-weight:600; line-height:1.25; flex:1; }
+  .lec-ico { color:#7b83b5; font-size:20px; flex-shrink:0; }
+  .lec.activa .lec-ico { color:#E3B23C; }
+
+  .pie { text-align:center; font-size:11.5px; color:#6069a0; margin:24px 18px 0; line-height:1.5; }
+
+  .aviso {
+    margin:16px; padding:12px 14px; border-radius:12px;
+    background:#3a2320; border:1px solid #a05a2c;
+    color:#f0c78a; font-size:13px; display:none;
+  }
+</style>
+</head>
+<body>
+
+<div class="cab">
+  <div class="escudo">NBS</div>
+  <div>
+    <div class="cab-tit">NBS Academia</div>
+    <div class="cab-sub">Aprende de negocio mientras trabajas</div>
+  </div>
+</div>
+
+<div id="aviso" class="aviso"></div>
+
+<div class="ahora">
+  <div class="ahora-lbl">Escuchando ahora</div>
+  <div id="ahora-tit" class="ahora-tit">Toca una lección para empezar</div>
+  <div id="ahora-parte" class="ahora-parte">&nbsp;</div>
+
+  <div class="controles">
+    <button class="btn-sec" id="btn-ant" aria-label="Anterior">
+      <svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+    </button>
+    <button class="btn-play" id="btn-play" aria-label="Reproducir">
+      <svg class="ico" id="ico-play" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="ico" id="ico-pause" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+    </button>
+    <button class="btn-sec" id="btn-sig" aria-label="Siguiente">
+      <svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg>
+    </button>
+  </div>
+
+  <div class="pantalla-nota" id="pantalla-nota">La pantalla se mantiene encendida al reproducir</div>
+
+  <div class="velos">
+    <div class="velo" data-v="0.85">Lento</div>
+    <div class="velo activa" data-v="1">Normal</div>
+    <div class="velo" data-v="1.15">Rápido</div>
+  </div>
+</div>
+
+<div class="sec-tit">Todas las lecciones</div>
+<div class="lista" id="lista"></div>
+
+<div class="pie">
+  Nunez Beauty Supply — NBS Academia<br>
+  Consejo: ten el teléfono en su soporte y cargando. No aprietes el botón de apagar mientras escuchas.
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  NBS ACADEMIA — lecciones de negocio en audio (voz del teléfono)
+// ═══════════════════════════════════════════════════════════════
+
+var LECCIONES = [
+{ titulo: "Ganancia no es lo mismo que ingreso", texto:
+"Bienvenido a tu primera lección. Vamos a empezar con el error más común en los negocios, y entenderlo te va a cambiar la forma de ver tu dinero. Muchos dueños ven entrar mil dólares en el día y piensan: gané mil dólares. Pero eso no es verdad. Ese dinero que entra se llama ingreso, y de ahí todavía tienes que pagar muchas cosas. Piénsalo así: si vendiste mil dólares, pero el producto que vendiste te costó seiscientos, y gastaste cincuenta en gasolina de la ruta, entonces tu ganancia real no es mil. Es mil, menos seiscientos, menos cincuenta. O sea, trescientos cincuenta dólares. Esa es tu ganancia de verdad. El resto nunca fue tuyo: era para reponer el producto y cubrir tus gastos. Por eso, graba esta regla de oro: el dinero que entra no es tuyo hasta que le descuentas lo que costó ganarlo. El número que de verdad importa se llama ganancia neta. Es lo que te queda después de pagar el producto y todos tus gastos. Ese es el número que debes vivir mirando. No te emociones con lo que vendes; emociónate con lo que te queda. En las próximas lecciones vamos a ver cómo hacer que tu ganancia neta sea cada vez más grande. Nos vemos en la siguiente." },
+
+{ titulo: "Precios y márgenes: cómo cobrar bien", texto:
+"En esta lección vas a aprender a poner precios que te dejen ganancia de verdad. Primero, dos palabras que se confunden todo el tiempo: margen y markup. El margen es qué parte de tu precio de venta es ganancia. El markup es cuánto le sumas encima a tu costo. Un ejemplo: te costó seis dólares y lo vendes en diez. Ganas cuatro. Ese cuatro, dividido entre el precio de diez, es cuarenta por ciento de margen. El mismo cuatro, dividido entre el costo de seis, es casi sesenta y siete por ciento de markup. Es el mismo dinero, pero se ve distinto. Para tu negocio, guíate por el margen. Ahora, la fórmula para sacar tu precio es simple: precio igual a costo, dividido entre uno menos el margen que quieres. Si te costó seis y quieres cuarenta por ciento, divides seis entre cero punto seis, y te da diez dólares. Y aquí va lo importante: no todos los productos dan el mismo margen. Las máquinas y clippers son caras y muy competidas, así que dan poco margen, entre veinte y treinta y cinco por ciento. Pero los líquidos, como shampoo, colonia y gel, son consumibles, se acaban y se vuelven a comprar, y ahí puedes ganar entre cuarenta y sesenta por ciento. La estrategia es esta: la máquina es el gancho para atraer al cliente, y ganas de verdad en lo que se lleva con ella. Recuerda: el precio correcto no es el más barato, es el que te deja ganancia y el cliente paga con gusto." },
+
+{ titulo: "Cómo ganar la lealtad de tus barberías", texto:
+"Tu ventaja más grande es algo que ningún competidor por internet puede copiar: tú ves a tus barberías en persona, cara a cara, todos los días. Usa eso. La primera clave es conocerlos de verdad. Aprende el nombre del dueño y de los barberos. Recuerda qué producto usa cada barbería y cuál prefiere. La gente quiere sentirse tratada como persona, no como un número. La segunda clave es ser rápido y confiable. Si dices que llegas el martes, llega el martes. Nunca les falles con un producto que necesitan. Si hay un problema, resuélvelo rápido. La mayoría de los clientes se van cuando su proveedor les falla. La tercera clave es crear conexión humana. Salúdalos por su nombre, pregúntales cómo va el negocio. De vez en cuando, dale una muestra gratis o un pequeño detalle a tus mejores clientes. La gente le compra a quien le cae bien y en quien confía. Y la cuarta clave: premia la lealtad. Usa tu programa VIP para dar mejores precios a los más fieles. Haz que se sientan parte de algo exclusivo. Recuerda siempre: cuidar al cliente que ya tienes es el mejor negocio que existe, porque conseguir uno nuevo cuesta cinco veces más. La competencia por internet puede tener precios, pero no puede darle a tus barberías lo que tú sí: trato personal, confianza y una relación de verdad." },
+
+{ titulo: "Ofertas que venden sin perder ganancia", texto:
+"Una oferta bien hecha no es una pérdida. Es una inversión que se paga sola si trae suficiente volumen. Cuando bajas el precio, ganas un poco menos por cada unidad, pero si vendes muchas más unidades, terminas ganando más en total. La primera estrategia, y la mejor, es el descuento por volumen. Premia al que compra más con un mejor precio por unidad. Por ejemplo: de una a cinco unidades, a diez dólares cada una. De seis a once, a nueve cincuenta. De doce o más, a nueve. El cliente siente que gana comprando más, y tú mueves más producto y más rápido. La segunda estrategia es la oferta semanal. Cada semana, elige un solo producto de buen margen y ponlo en oferta, con límite: solo esta semana. Eso crea urgencia y le da a las barberías una razón para comprarte ahora. Pero cuidado: ofrece descuentos fuertes solo en productos de buen margen. En las máquinas, que dan poco margen, ofrece descuentos suaves o ninguno. La tercera estrategia es la venta cruzada, y sube tu ganancia sin descontar nada. Consiste en ofrecer productos que combinan con lo que ya compran. Al que compra máquinas, ofrécele aceite, cuchillas y limpieza. Al que compra shampoo, ofrécele acondicionador. La máquina es el gancho; la ganancia está en lo que la acompaña." },
+
+{ titulo: "Vender más en cada visita de la ruta", texto:
+"Cada visita a una barbería es una oportunidad, y la mayoría de los vendedores la desaprovecha porque solo toma el pedido y se va. Tú vas a hacer algo diferente. Antes de entrar, revisa en tu app qué compra normalmente ese cliente y qué compró la última vez. Así llegas preparado. Cuando estés ahí, no esperes a que te pidan: sugiere. Si siempre compra shampoo, pregúntale si le hace falta acondicionador. Si compra máquinas, ofrécele las cuchillas y el aceite que va a necesitar. La gente muchas veces compra más solo porque se lo recordaste. Segundo: menciona siempre la oferta de la semana. Es una razón para que compre hoy y no la próxima vez. Tercero: fíjate en lo que se le está acabando. Si ves que un producto está bajo en su estante, díselo con confianza: te queda poco de esto, ¿te dejo unos cuantos? Cuarto: al cliente que compra poco, tiéntalo con el descuento por volumen. Muéstrale cuánto ahorra si lleva más. Recuerda: no eres solo el que entrega; eres el que ayuda a la barbería a nunca quedarse sin lo que necesita. Esa actitud te hace vender más y te hace indispensable." },
+
+{ titulo: "Negociar bien con tus suplidores", texto:
+"El dinero también se gana cuando compras, no solo cuando vendes. Si compras mejor, ganas más en cada venta. Primera regla: compra en volumen cuando puedas. Los suplidores casi siempre te dan mejor precio si les compras más cantidad. Un costo más bajo significa más margen para ti en cada producto que vendes. Segunda regla: paga a tiempo y construye confianza. El suplidor que confía en ti te da mejores precios, te avisa primero de los productos nuevos, y a veces te da crédito. Tu buena fama con ellos vale dinero. Tercera regla: compara. No te cases con un solo suplidor sin saber si otro te da mejor precio por lo mismo. Tener dos o tres opciones te da poder para negociar. Cuarta regla: pregunta siempre por descuentos y términos. ¿Hay mejor precio si pago de contado? ¿Si compro esta cantidad? Muchas veces el descuento está ahí, pero solo lo dan si preguntas. Y quinta: lleva la cuenta de lo que le debes a cada suplidor, tus cuentas por pagar, para nunca perder el control. Recuerda: cada dólar que ahorras comprando es un dólar directo a tu ganancia." },
+
+{ titulo: "No quedarte sin lo que más vendes", texto:
+"El inventario es dinero. Cada producto en tu van es dinero tuyo esperando a venderse, y manejarlo bien es clave para ganar. La primera regla de oro es esta: nunca te quedes sin tus productos más vendidos. Si un cliente te pide lo que siempre lleva y no lo tienes, no solo pierdes esa venta: le abres la puerta al competidor. Ten siempre stock de lo que más se mueve. Segundo: conoce tus números. Tu app te dice cuáles son tus productos más vendidos. Esos son tus estrellas; cuídalos y tenlos siempre. Tercero: cuidado con el inventario muerto. Ese producto que compraste y no se vende, que lleva meses ahí, es dinero atrapado que no está trabajando. Es mejor bajarle el precio y salir de él para recuperar tu dinero y comprar lo que sí se vende. Cuarto: rellena tu van con orden, por marca, para que sea rápido y no se te olvide nada. Y quinto: revisa tu inventario seguido, para pedir a tiempo y nunca llegar corto a la ruta. Recuerda: un buen negocio no es el que tiene más producto, es el que tiene el producto correcto, el que se vende, siempre disponible." },
+
+{ titulo: "Manejar el crédito y cobrar a tiempo", texto:
+"Dar crédito, fiar, ayuda a vender más, pero es un arma de doble filo. Esta lección te enseña a manejarlo sin que te ahogue. Primero entiende esto: cada dólar que te deben es un dólar que ya trabajaste, pero que todavía no tienes en la mano. Si se acumula demasiado, puedes vender muchísimo y aun así quedarte sin efectivo para comprar más producto. A eso se le llama un problema de flujo de caja. Para no caer ahí, sigue estas reglas. Regla uno: no dejes que un cliente pase de dos o tres semanas sin abonar. Habla con él antes de que la deuda crezca. Regla dos: ponle un límite a cuánto le fías a cada cliente. No todos merecen el mismo crédito. Regla tres: al que siempre paga tarde, véndele más de contado y menos a crédito. Regla cuatro: revisa tus cuentas por cobrar cada semana en la app, para no perder de vista quién te debe. Cobrar a tiempo es tan importante como vender. Una venta a crédito no está completa hasta que te pagan. El vendedor amable que nunca cobra termina quebrando; el que cobra con respeto pero con firmeza, prospera." },
+
+{ titulo: "Servicio que hace que te prefieran a ti", texto:
+"En un mundo donde el cliente puede comprar por internet, ¿por qué te compraría a ti? La respuesta es el servicio, y es tu arma secreta. Primero, la puntualidad. Llegar cuando dijiste que ibas a llegar genera una confianza que el internet no puede dar. El cliente sabe que puede contar contigo. Segundo, resolver rápido. Cuando algo sale mal, un producto defectuoso, un pedido incompleto, la velocidad con que lo arreglas es lo que decide si el cliente se queda o se va. Un problema bien resuelto crea más lealtad que si nunca hubiera pasado. Tercero, el trato humano. Preguntar cómo va el negocio, acordarte de sus cosas, felicitarlo en una fecha especial. Eso construye una relación, no solo una venta. Cuarto, escucha. Pregúntale qué productos le gustaría que trajeras, y cuando puedas, tráelos. El cliente que se siente escuchado no se va con la competencia. Y quinto, cumple siempre tu palabra. Tu palabra es tu marca. La competencia por internet puede tener precios más bajos, pero no puede mirarte a los ojos, ni resolverte un problema hoy mismo, ni conocerte por tu nombre. Ese trato personal es lo que te hace ganar, visita tras visita." },
+
+{ titulo: "Mentalidad de dueño de negocio", texto:
+"Esta lección no es de técnicas, es de mentalidad, y quizás es la más importante de todas. Un dueño de negocio piensa diferente. Primero: separa el dinero del negocio del dinero personal. Si los mezclas, nunca vas a saber si el negocio gana o pierde, y te vas a gastar sin querer el dinero que era para comprar producto. Ten una cuenta o un sobre solo para el negocio, y págate un sueldo fijo, en vez de sacar dinero cuando sea. Segundo: reinvierte para crecer. Parte de lo que ganas debe volver al negocio, en más producto, en mejores herramientas, en crecer tu ruta. El que se lo gasta todo, se queda igual. Tercero: piensa a largo plazo. No sacrifiques una relación de años por ganar un poco más hoy. Cuarto: decide con números, no con emociones. Tus números te dicen la verdad; tus corazonadas a veces te engañan. Revisa tus ganancias cada semana y cada mes. Y quinto: cuida tu nombre. En este negocio, tu reputación con las barberías y con los suplidores es tu activo más valioso. El que conoce sus números y cuida su palabra, manda en su negocio. El que va a ciegas y gasta sin control, tarde o temprano tropieza." },
+
+{ titulo: "Cómo crecer tu negocio paso a paso", texto:
+"Para cerrar, vamos a juntar todo en un plan de crecimiento. Crecer no es solo vender más hoy; es construir algo cada vez más grande y sólido. Paso uno: primero retén, después crece. Antes de buscar clientes nuevos, asegúrate de cuidar bien a los que ya tienes, porque retener cuesta cinco veces menos que conseguir. Un cliente feliz, además, te recomienda gratis con otras barberías, y esa es la mejor publicidad que existe. Paso dos: vende más a los que ya te compran. Con venta cruzada y buen servicio, cada cliente puede darte más sin que gastes en conseguir uno nuevo. Paso tres: agrega productos con inteligencia. Pregunta a tus clientes qué les gustaría que trajeras, y trae lo que de verdad se va a vender. Paso cuatro: expande tu ruta poco a poco. Cada barbería nueva bien atendida es un ingreso más, pero crece a un ritmo que puedas cumplir, porque fallar por crecer muy rápido te cuesta caro. Paso cinco: mide y ajusta. Cada mes, compara si tus ganancias subieron. Si sí, sigue por ahí. Si no, ajusta precios, gastos o cobros. Recuerda: los negocios grandes empezaron pequeños, pero con dueños que cuidaban sus números, cuidaban a su gente, y mejoraban un poco cada mes. Ese eres tú. Sigue adelante, Sensei." }
+];
+
+// ---------- Estado ----------
+var synth = window.speechSynthesis;
+var idxLeccion = -1;
+var chunks = [];
+var idxChunk = 0;
+var reproduciendo = false;
+var cancelManual = false;
+var velocidad = 1;
+var vozES = null;
+var wakeLock = null;
+
+// ---------- Voz ----------
+function elegirVoz(){
+  var voces = synth.getVoices() || [];
+  // Preferir una voz en español; probar es-US, es-MX, es-ES, o cualquier "es"
+  var pref = ['es-us','es-mx','es-419','es-es','es'];
+  for(var p=0; p<pref.length; p++){
+    for(var i=0;i<voces.length;i++){
+      var l = (voces[i].lang||'').toLowerCase();
+      if(l.indexOf(pref[p])===0){ return voces[i]; }
+    }
+  }
+  for(var j=0;j<voces.length;j++){
+    if((voces[j].lang||'').toLowerCase().indexOf('es')===0) return voces[j];
+  }
+  return null;
+}
+function cargarVoz(){ vozES = elegirVoz(); }
+if(synth){
+  cargarVoz();
+  if(typeof synth.onvoiceschanged !== 'undefined'){
+    synth.onvoiceschanged = cargarVoz;
+  }
+}
+
+// ---------- Partir el texto en pedazos cortos (por oración) ----------
+function partirEnChunks(txt){
+  // Divide por punto, signos, etc., y luego corta los pedazos muy largos por coma.
+  var crudo = txt.match(/[^.!?]+[.!?]*/g) || [txt];
+  var res = [];
+  crudo.forEach(function(s){
+    s = s.trim();
+    if(!s) return;
+    if(s.length <= 200){ res.push(s); return; }
+    // pedazo largo: cortar por coma
+    var partes = s.split(/,\s*/);
+    var buffer = '';
+    partes.forEach(function(p){
+      if((buffer + ' ' + p).length > 200){
+        if(buffer) res.push(buffer.trim());
+        buffer = p;
+      } else {
+        buffer = buffer ? (buffer + ', ' + p) : p;
+      }
+    });
+    if(buffer) res.push(buffer.trim());
+  });
+  return res;
+}
+
+// ---------- Wake Lock (mantener pantalla encendida) ----------
+async function pedirWakeLock(){
+  try{
+    if('wakeLock' in navigator){
+      wakeLock = await navigator.wakeLock.request('screen');
+      wakeLock.addEventListener('release', function(){});
+      actualizarNotaPantalla(true);
+    }
+  }catch(e){ actualizarNotaPantalla(false); }
+}
+function soltarWakeLock(){
+  try{ if(wakeLock){ wakeLock.release(); wakeLock = null; } }catch(e){}
+  actualizarNotaPantalla(false);
+}
+function actualizarNotaPantalla(activa){
+  var el = document.getElementById('pantalla-nota');
+  if(activa){ el.innerHTML = '<span class="pantalla-on">🔆 Pantalla encendida — no se apagará</span>'; }
+  else { el.textContent = 'La pantalla se mantiene encendida al reproducir'; }
+}
+// Si vuelve a primer plano y estaba reproduciendo, volver a pedir el wake lock
+document.addEventListener('visibilitychange', function(){
+  if(document.visibilityState === 'visible' && reproduciendo){ pedirWakeLock(); }
+});
+
+// ---------- Reproducción ----------
+function hablarChunk(){
+  if(idxChunk >= chunks.length){ leccionTerminada(); return; }
+  var u = new SpeechSynthesisUtterance(chunks[idxChunk]);
+  u.lang = 'es-US';
+  if(vozES) u.voice = vozES;
+  u.rate = velocidad;
+  u.pitch = 1;
+  u.onend = function(){
+    if(cancelManual){ cancelManual = false; return; }
+    idxChunk++;
+    actualizarParte();
+    if(idxChunk < chunks.length){ hablarChunk(); }
+    else { leccionTerminada(); }
+  };
+  u.onerror = function(){
+    // Si hubo un corte y seguimos en modo reproducir, intentar continuar
+    if(!cancelManual && reproduciendo){
+      idxChunk++;
+      if(idxChunk < chunks.length){ hablarChunk(); } else { leccionTerminada(); }
+    }
+    cancelManual = false;
+  };
+  synth.speak(u);
+}
+
+function reproducir(){
+  if(idxLeccion < 0){ cargarLeccion(0, false); }
+  if(!chunks.length){ chunks = partirEnChunks(LECCIONES[idxLeccion].texto); }
+  reproduciendo = true;
+  actualizarPlayUI();
+  pedirWakeLock();
+  cancelManual = true;      // por si había algo hablando
+  synth.cancel();
+  setTimeout(function(){ cancelManual = false; hablarChunk(); }, 120);
+}
+
+function pausar(){
+  reproduciendo = false;
+  cancelManual = true;
+  try{ synth.cancel(); }catch(e){}
+  soltarWakeLock();
+  actualizarPlayUI();
+}
+
+function togglePlay(){
+  if(!synth){ mostrarAviso('Tu navegador no soporta lectura por voz. Usa Chrome.'); return; }
+  if(reproduciendo){ pausar(); } else { reproducir(); }
+}
+
+function leccionTerminada(){
+  // Avanzar sola a la siguiente lección y seguir reproduciendo (como un podcast)
+  if(idxLeccion < LECCIONES.length - 1){
+    cargarLeccion(idxLeccion + 1, false);
+    if(reproduciendo){ setTimeout(reproducir, 400); }
+  } else {
+    reproduciendo = false;
+    soltarWakeLock();
+    actualizarPlayUI();
+    actualizarParte(true);
+  }
+}
+
+function cargarLeccion(i, autoplay){
+  if(i < 0 || i >= LECCIONES.length) return;
+  cancelManual = true;
+  try{ synth.cancel(); }catch(e){}
+  idxLeccion = i;
+  chunks = partirEnChunks(LECCIONES[i].texto);
+  idxChunk = 0;
+  try{ localStorage.setItem('nbs_academia_leccion', String(i)); }catch(e){}
+  document.getElementById('ahora-tit').textContent = LECCIONES[i].titulo;
+  actualizarParte();
+  renderLista();
+  if(autoplay){ setTimeout(reproducir, 150); }
+}
+
+function siguiente(){ if(idxLeccion < LECCIONES.length-1){ cargarLeccion(idxLeccion+1, reproduciendo); } }
+function anterior(){ if(idxLeccion > 0){ cargarLeccion(idxLeccion-1, reproduciendo); } }
+
+// ---------- UI ----------
+function actualizarPlayUI(){
+  document.getElementById('ico-play').style.display = reproduciendo ? 'none' : 'block';
+  document.getElementById('ico-pause').style.display = reproduciendo ? 'block' : 'none';
+}
+function actualizarParte(fin){
+  var el = document.getElementById('ahora-parte');
+  if(idxLeccion < 0){ el.innerHTML = '&nbsp;'; return; }
+  if(fin){ el.textContent = 'Fin de las lecciones. ¡Bien hecho!'; return; }
+  var total = chunks.length || 1;
+  var actual = Math.min(idxChunk+1, total);
+  el.textContent = 'Lección ' + (idxLeccion+1) + ' de ' + LECCIONES.length + '  ·  parte ' + actual + '/' + total;
+}
+function renderLista(){
+  var cont = document.getElementById('lista');
+  cont.innerHTML = LECCIONES.map(function(l, i){
+    var activa = (i === idxLeccion) ? ' activa' : '';
+    return '<div class="lec'+activa+'" data-i="'+i+'">' +
+      '<div class="lec-num">'+(i+1)+'</div>' +
+      '<div class="lec-tit">'+l.titulo+'</div>' +
+      '<div class="lec-ico">'+((i===idxLeccion && reproduciendo)?'▶':'♪')+'</div>' +
+    '</div>';
+  }).join('');
+  Array.prototype.forEach.call(cont.querySelectorAll('.lec'), function(el){
+    el.addEventListener('click', function(){
+      var i = parseInt(el.getAttribute('data-i'), 10);
+      cargarLeccion(i, true);
+    });
+  });
+}
+function mostrarAviso(msg){
+  var a = document.getElementById('aviso');
+  a.textContent = msg; a.style.display = 'block';
+}
+
+// Botones
+document.getElementById('btn-play').addEventListener('click', togglePlay);
+document.getElementById('btn-sig').addEventListener('click', siguiente);
+document.getElementById('btn-ant').addEventListener('click', anterior);
+Array.prototype.forEach.call(document.querySelectorAll('.velo'), function(el){
+  el.addEventListener('click', function(){
+    document.querySelectorAll('.velo').forEach(function(x){ x.classList.remove('activa'); });
+    el.classList.add('activa');
+    velocidad = parseFloat(el.getAttribute('data-v'));
+    // si está reproduciendo, aplicar la velocidad desde el pedazo actual
+    if(reproduciendo){ cancelManual = true; synth.cancel(); setTimeout(function(){ cancelManual=false; hablarChunk(); }, 150); }
+  });
+});
+
+// Service Worker: hace que la Academia abra aunque no haya internet.
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').catch(function(e){
+      console.log('SW Academia no se registro:', e);
+    });
+  });
+}
+
+// Al arrancar: dejar lista la primera lección (o la última escuchada), sin reproducir
+(function init(){
+  if(!synth){ mostrarAviso('Este teléfono no soporta lectura por voz en el navegador. Prueba con Chrome.'); }
+  renderLista();
+  var guardada = 0;
+  try{ var g = localStorage.getItem('nbs_academia_leccion'); if(g!==null) guardada = parseInt(g,10)||0; }catch(e){}
+  cargarLeccion(guardada, false);
+})();
+</script>
+</body>
+</html>
