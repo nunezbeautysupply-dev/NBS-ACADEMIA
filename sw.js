@@ -5,7 +5,7 @@
 //  nuevo; sin internet usa la copia guardada.
 // ═══════════════════════════════════════════════════════════════
 
-var CACHE_NOMBRE = 'nbs-academia-v2';
+var CACHE_NOMBRE = 'nbs-academia-v3';
 
 var ARCHIVOS_BASE = [
   './',
