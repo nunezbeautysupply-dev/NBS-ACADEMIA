@@ -3,118 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="app-version" content="20260721a-ACADEMIA-V1.0">
+<meta name="app-version" content="20260722-ACADEMIA-V2.0">
 <title>NBS Academia</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0f1430">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
-  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html, body { margin:0; padding:0; }
-  body {
-    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    background: #0f1430;
-    color: #f3f4fb;
-    min-height: 100vh;
-    padding-bottom: 30px;
-  }
-  .cab {
-    display:flex; align-items:center; gap:12px;
-    padding: 16px 18px;
-    background: linear-gradient(180deg, #161d44 0%, #0f1430 100%);
-    border-bottom: 1px solid #2a326a;
-    position: sticky; top:0; z-index: 5;
-  }
-  .escudo {
-    width:46px; height:46px; border-radius:10px; flex-shrink:0;
-    background: linear-gradient(145deg, #1a2350, #0c1130);
-    border: 2px solid #E3B23C;
-    display:flex; align-items:center; justify-content:center;
-    color:#E3B23C; font-weight:900; font-size:15px; letter-spacing:0.5px;
-  }
-  .cab-tit { font-size:20px; font-weight:800; line-height:1.1; }
-  .cab-sub { font-size:12px; color:#9aa2cc; margin-top:2px; }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:#0f1430;color:#f3f4fb;padding-bottom:40px}
+  .cab{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(180deg,#161d44,#0f1430);border-bottom:1px solid #2a326a;position:sticky;top:0;z-index:20}
+  .escudo{width:44px;height:44px;border-radius:10px;flex-shrink:0;background:linear-gradient(145deg,#1a2350,#0c1130);border:2px solid #E3B23C;display:flex;align-items:center;justify-content:center;color:#E3B23C;font-weight:900;font-size:14px}
+  .cab-tit{font-size:19px;font-weight:800;line-height:1.1}
+  .cab-sub{font-size:11.5px;color:#9aa2cc;margin-top:2px}
 
-  .ahora {
-    margin: 16px;
-    background: linear-gradient(160deg, #232c5e 0%, #1a2350 100%);
-    border: 1px solid #313a7d;
-    border-radius: 18px;
-    padding: 18px 16px 20px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-  }
-  .ahora-lbl { font-size:12px; color:#E3B23C; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
-  .ahora-tit { font-size:22px; font-weight:800; margin:6px 0 2px; line-height:1.15; }
-  .ahora-parte { font-size:13px; color:#9aa2cc; min-height:16px; }
+  .caja{margin:14px;background:linear-gradient(160deg,#232c5e,#1a2350);border:1px solid #313a7d;border-radius:16px;padding:16px 14px;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+  .lbl{font-size:11px;color:#E3B23C;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+  .tit{font-size:21px;font-weight:800;margin:6px 0 3px;line-height:1.2}
+  .sub{font-size:12.5px;color:#9aa2cc;min-height:16px}
 
-  .controles {
-    display:flex; align-items:center; justify-content:center; gap:22px;
-    margin: 18px 0 6px;
-  }
-  .btn-cir {
-    background:#2a336f; border:none; cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    color:#f3f4fb; border-radius:50%;
-  }
-  .btn-sec {
-    width:60px; height:60px; background:#2c356f; border:none; border-radius:50%;
-    color:#f3f4fb; font-size:24px; cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .btn-sec:active { background:#39439a; }
-  .btn-play {
-    width:88px; height:88px; border-radius:50%;
-    background: linear-gradient(145deg, #f0c04a, #d99b1f);
-    border:none; cursor:pointer; color:#161d44;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow: 0 6px 18px rgba(227,178,60,0.45);
-  }
-  .btn-play:active { transform: scale(0.96); }
-  .ico { display:block; }
+  .ctrl{display:flex;align-items:center;justify-content:center;gap:18px;margin:16px 0 6px}
+  .bsec{width:56px;height:56px;border-radius:50%;background:#2c356f;border:none;color:#fff;font-size:23px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .bsec:active{background:#39439a}
+  .bplay{width:84px;height:84px;border-radius:50%;background:linear-gradient(145deg,#f0c04a,#d99b1f);border:none;color:#161d44;font-size:36px;cursor:pointer;box-shadow:0 5px 16px rgba(227,178,60,.45);display:flex;align-items:center;justify-content:center}
+  .bplay:active{transform:scale(.96)}
+  .nota-pant{text-align:center;font-size:12px;color:#8a92bd;margin-top:8px}
 
-  .pantalla-nota {
-    text-align:center; font-size:12.5px; margin-top:10px;
-    color:#8a92bd;
-  }
-  .pantalla-on { color:#6cd08f; font-weight:700; }
+  .chips{display:flex;gap:7px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+  .chip{background:#20285a;border:1px solid #313a7d;color:#c7cdf0;padding:6px 13px;border-radius:18px;font-size:12.5px;font-weight:700;cursor:pointer}
+  .chip.on{background:#E3B23C;border-color:#E3B23C;color:#161d44}
 
-  .velos { display:flex; gap:8px; justify-content:center; margin-top:14px; }
-  .velo {
-    background:#20285a; border:1px solid #313a7d; color:#c7cdf0;
-    padding:7px 14px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer;
-  }
-  .velo.activa { background:#E3B23C; color:#161d44; border-color:#E3B23C; }
+  .barra{height:9px;background:#1b2250;border-radius:6px;overflow:hidden;margin:10px 0 6px}
+  .barra>div{height:100%;background:linear-gradient(90deg,#E3B23C,#f0c04a);width:0%;transition:width .4s}
+  .stats{display:flex;gap:8px;margin-top:10px}
+  .stat{flex:1;background:#171e46;border:1px solid #262e63;border-radius:11px;padding:9px 6px;text-align:center}
+  .stat b{display:block;font-size:19px;color:#E3B23C;line-height:1.1}
+  .stat span{font-size:10.5px;color:#9aa2cc}
 
-  .sec-tit {
-    margin: 22px 18px 8px; font-size:13px; font-weight:700; letter-spacing:1px;
-    color:#9aa2cc; text-transform:uppercase;
-  }
-  .lista { margin: 0 12px; }
-  .lec {
-    display:flex; align-items:center; gap:12px;
-    background:#171e46; border:1px solid #262e63; border-radius:14px;
-    padding:14px 14px; margin-bottom:9px; cursor:pointer;
-  }
-  .lec:active { background:#1e2658; }
-  .lec.activa { border-color:#E3B23C; background:#1e2658; }
-  .lec-num {
-    width:34px; height:34px; border-radius:9px; flex-shrink:0;
-    background:#2a336f; color:#E3B23C; font-weight:800; font-size:15px;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .lec.activa .lec-num { background:#E3B23C; color:#161d44; }
-  .lec-tit { font-size:15.5px; font-weight:600; line-height:1.25; flex:1; }
-  .lec-ico { color:#7b83b5; font-size:20px; flex-shrink:0; }
-  .lec.activa .lec-ico { color:#E3B23C; }
+  .busca{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #313a7d;background:#171e46;color:#f3f4fb;font-size:15px;outline:none}
+  .busca::placeholder{color:#7b83b5}
 
-  .pie { text-align:center; font-size:11.5px; color:#6069a0; margin:24px 18px 0; line-height:1.5; }
+  .secn{margin:18px 16px 8px;font-size:12px;font-weight:800;color:#9aa2cc;letter-spacing:1px;text-transform:uppercase}
+  .mod-cab{display:flex;align-items:center;gap:9px;margin:16px 14px 8px}
+  .mod-pill{font-size:12px;font-weight:800;padding:5px 12px;border-radius:16px;color:#fff}
+  .mod-cnt{font-size:11.5px;color:#7b83b5}
 
-  .aviso {
-    margin:16px; padding:12px 14px; border-radius:12px;
-    background:#3a2320; border:1px solid #a05a2c;
-    color:#f0c78a; font-size:13px; display:none;
+  .lista{margin:0 12px}
+  .lec{display:flex;align-items:center;gap:11px;background:#171e46;border:1px solid #262e63;border-radius:13px;padding:12px;margin-bottom:8px;cursor:pointer}
+  .lec:active{background:#1e2658}
+  .lec.on{border-color:#E3B23C;background:#1e2658}
+  .lec.hecha .lnum{background:#2E7D32;color:#fff}
+  .lnum{width:33px;height:33px;border-radius:9px;flex-shrink:0;background:#2a336f;color:#E3B23C;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .lec.on .lnum{background:#E3B23C;color:#161d44}
+  .ltit{font-size:15px;font-weight:600;line-height:1.25;flex:1}
+  .lico{font-size:17px;flex-shrink:0;color:#7b83b5}
+
+  .bfila{display:flex;gap:7px;margin-top:12px}
+  .btn{flex:1;padding:11px 6px;border-radius:11px;border:1px solid #313a7d;background:#20285a;color:#dfe3fb;font-size:13px;font-weight:700;cursor:pointer}
+  .btn:active{background:#2c356f}
+  .btn.oro{background:#E3B23C;border-color:#E3B23C;color:#161d44}
+
+  .modal{display:none;position:fixed;inset:0;background:rgba(6,9,26,.93);z-index:60;overflow-y:auto;padding:14px}
+  .modal.on{display:block}
+  .mcaja{background:#141a3c;border:1px solid #313a7d;border-radius:16px;padding:16px;max-width:640px;margin:0 auto}
+  .mcerrar{float:right;background:#2c356f;border:none;color:#fff;width:38px;height:38px;border-radius:50%;font-size:19px;cursor:pointer}
+  .mtit{font-size:20px;font-weight:800;margin:0 0 4px;padding-right:44px;line-height:1.25}
+  .texto{font-size:16.5px;line-height:1.75;color:#e8ebff;margin-top:12px;white-space:pre-wrap}
+  .accion{background:#1d3a24;border:1px solid #2E7D32;border-radius:12px;padding:12px 14px;margin-top:14px}
+  .accion b{color:#7bd693;font-size:12px;letter-spacing:.5px;display:block;margin-bottom:5px}
+  .notat{width:100%;min-height:90px;padding:11px;border-radius:11px;border:1px solid #313a7d;background:#171e46;color:#f3f4fb;font-size:15px;margin-top:8px;font-family:inherit}
+
+  .q{background:#171e46;border:1px solid #262e63;border-radius:12px;padding:13px;margin-bottom:10px}
+  .qp{font-size:15.5px;font-weight:700;margin-bottom:9px;line-height:1.35}
+  .qo{display:block;width:100%;text-align:left;padding:11px 12px;border-radius:10px;border:1px solid #313a7d;background:#20285a;color:#dfe3fb;font-size:14.5px;margin-bottom:7px;cursor:pointer;font-family:inherit}
+  .qo.ok{background:#1d3a24;border-color:#2E7D32;color:#9ce8b0}
+  .qo.mal{background:#3a2320;border-color:#a05a2c;color:#f0b0a0}
+
+  #imp{display:none}
+  @media print{
+    body{background:#fff;color:#000;padding:0}
+    body>*{display:none !important}
+    #imp{display:block !important;padding:0}
+    #imp h1{font-size:24pt;color:#1a237e;margin:0 0 4pt}
+    #imp h2{font-size:16pt;color:#1a237e;border-bottom:2px solid #C9A227;padding-bottom:3pt;margin:18pt 0 6pt;page-break-after:avoid}
+    #imp h3{font-size:12pt;color:#C9A227;margin:12pt 0 4pt}
+    #imp p{font-size:12pt;line-height:1.6;margin:0 0 8pt}
+    #imp .acc{border:1pt solid #2E7D32;background:#f0f8f1;padding:8pt;margin:8pt 0}
+    #imp .lecp{page-break-inside:avoid;margin-bottom:16pt}
+    #imp .pie{font-size:9pt;color:#666;text-align:center;margin-top:14pt}
   }
 </style>
 </head>
@@ -128,313 +105,392 @@
   </div>
 </div>
 
-<div id="aviso" class="aviso"></div>
-
-<div class="ahora">
-  <div class="ahora-lbl">Escuchando ahora</div>
-  <div id="ahora-tit" class="ahora-tit">Toca una lección para empezar</div>
-  <div id="ahora-parte" class="ahora-parte">&nbsp;</div>
-
-  <div class="controles">
-    <button class="btn-sec" id="btn-ant" aria-label="Anterior">
-      <svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-    </button>
-    <button class="btn-play" id="btn-play" aria-label="Reproducir">
-      <svg class="ico" id="ico-play" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="ico" id="ico-pause" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
-    </button>
-    <button class="btn-sec" id="btn-sig" aria-label="Siguiente">
-      <svg class="ico" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg>
-    </button>
+<!-- ══ REPRODUCTOR ══ -->
+<div class="caja">
+  <div class="lbl">Escuchando ahora</div>
+  <div id="ptit" class="tit">Toca una leccion</div>
+  <div id="psub" class="sub">&nbsp;</div>
+  <div class="ctrl">
+    <button class="bsec" id="bant">&#9198;</button>
+    <button class="bplay" id="bplay">&#9654;</button>
+    <button class="bsec" id="bsig">&#9197;</button>
   </div>
-
-  <div class="pantalla-nota" id="pantalla-nota">La pantalla se mantiene encendida al reproducir</div>
-
-  <div class="velos">
-    <div class="velo" data-v="0.85">Lento</div>
-    <div class="velo activa" data-v="1">Normal</div>
-    <div class="velo" data-v="1.15">Rápido</div>
+  <div class="nota-pant" id="npant">La pantalla se mantiene encendida al reproducir</div>
+  <div class="chips">
+    <button class="chip" data-v="0.85">Lento</button>
+    <button class="chip on" data-v="1">Normal</button>
+    <button class="chip" data-v="1.15">Rapido</button>
+  </div>
+  <div class="bfila">
+    <button class="btn" id="babrir">&#128214; Leer</button>
+    <button class="btn" id="brepaso">&#10067; Repaso</button>
+    <button class="btn" id="bnota">&#128221; Nota</button>
   </div>
 </div>
 
-<div class="sec-tit">Todas las lecciones</div>
-<div class="lista" id="lista"></div>
-
-<div class="pie">
-  Nunez Beauty Supply — NBS Academia<br>
-  Consejo: ten el teléfono en su soporte y cargando. No aprietes el botón de apagar mientras escuchas.
+<!-- ══ PROGRESO ══ -->
+<div class="caja">
+  <div class="lbl">Tu progreso</div>
+  <div class="barra"><div id="pbar"></div></div>
+  <div class="sub" id="ptxt">0 de 31 lecciones</div>
+  <div class="stats">
+    <div class="stat"><b id="sminu">0</b><span>minutos</span></div>
+    <div class="stat"><b id="sracha">0</b><span>dias seguidos</span></div>
+    <div class="stat"><b id="sfav">0</b><span>favoritas</span></div>
+  </div>
+  <div class="bfila">
+    <button class="btn oro" id="bdia">&#127775; Leccion del dia</button>
+    <button class="btn" id="btemp">&#9201; Temporizador</button>
+  </div>
+  <div class="bfila">
+    <button class="btn" id="bimpcurso">&#128424; Imprimir curso completo</button>
+  </div>
 </div>
+
+<!-- ══ BUSCADOR Y FILTROS ══ -->
+<div style="margin:14px">
+  <input class="busca" id="bq" type="text" placeholder="&#128269; Buscar una leccion...">
+  <div class="chips" style="justify-content:flex-start;margin-top:10px">
+    <button class="chip on" data-f="todas">Todas</button>
+    <button class="chip" data-f="pend">Pendientes</button>
+    <button class="chip" data-f="hechas">Escuchadas</button>
+    <button class="chip" data-f="fav">Favoritas</button>
+  </div>
+</div>
+
+<div id="lista"></div>
+
+<p style="font-size:11.5px;color:#6069a0;text-align:center;margin:22px 18px;line-height:1.5">
+  Nunez Beauty Supply &mdash; NBS Academia<br>
+  Ten el telefono en su soporte y cargando. No aprietes el boton de apagar mientras escuchas.
+</p>
+
+<!-- ══ MODAL ══ -->
+<div class="modal" id="modal"><div class="mcaja" id="mcont"></div></div>
+
+<!-- ══ AREA DE IMPRESION ══ -->
+<div id="imp"></div>
 
 <script>
-// ═══════════════════════════════════════════════════════════════
-//  NBS ACADEMIA — lecciones de negocio en audio (voz del teléfono)
-// ═══════════════════════════════════════════════════════════════
+var DATOS = {"modulos": [{"n": 1, "nombre": "El Dinero", "color": "#2E7D32", "icono": "💰"}, {"n": 2, "nombre": "Precios y Margenes", "color": "#1565C0", "icono": "🏷"}, {"n": 3, "nombre": "Vender en la Ruta", "color": "#E65100", "icono": "🚚"}, {"n": 4, "nombre": "Clientes", "color": "#6A1B9A", "icono": "🤝"}, {"n": 5, "nombre": "Inventario y Suplidores", "color": "#00838F", "icono": "📦"}, {"n": 6, "nombre": "Crecer", "color": "#C62828", "icono": "📈"}], "lecciones": [{"m": 1, "t": "Ganancia no es lo mismo que ingreso", "x": "Bienvenido a tu Academia. Vamos a empezar con el error mas comun en los negocios, y entenderlo te va a cambiar la forma de ver tu dinero. Muchos duenos ven entrar mil dolares en el dia y piensan: gane mil dolares. Pero eso no es verdad. Ese dinero que entra se llama ingreso, y de ahi todavia tienes que pagar muchas cosas. Pienselo asi: si vendiste mil dolares, pero el producto que vendiste te costo seiscientos, y gastaste cincuenta en gasolina de la ruta, entonces tu ganancia real no es mil. Es mil, menos seiscientos, menos cincuenta. O sea, trescientos cincuenta dolares. Esa es tu ganancia de verdad. El resto nunca fue tuyo: era para reponer el producto y cubrir tus gastos. Por eso, graba esta regla de oro: el dinero que entra no es tuyo hasta que le descuentas lo que costo ganarlo. Y aqui va un dato que te va a servir de referencia. En el negocio de distribucion al por mayor, el margen bruto tipico anda entre veinte y treinta por ciento, y despues de todos los gastos, la ganancia neta suele quedar entre dos y diez por ciento. Eso significa que en este negocio se gana por volumen y por control, no por vender caro. Cada dolar de gasto que no controlas se te come una parte grande de esa ganancia. El numero que de verdad importa se llama ganancia neta. Es lo que te queda despues de pagar el producto y todos tus gastos. Ese es el numero que debes vivir mirando. No te emociones con lo que vendes; emocionate con lo que te queda. En las proximas lecciones vamos a ver como hacer que tu ganancia neta sea cada vez mas grande.", "a": "Toma el total que vendiste ayer, restale lo que te costo ese producto y lo que gastaste en el dia. Ese numero es tu ganancia real de ayer. Anotalo.", "q": [{"p": "Si vendes $1,000, el producto te costo $600 y gastaste $50, cuanto ganaste de verdad?", "o": ["$1,000", "$400", "$350"], "c": 2}, {"p": "Cual es el numero mas importante de tu negocio?", "o": ["El ingreso total", "La ganancia neta", "Cuantos clientes visitaste"], "c": 1}, {"p": "En distribucion al por mayor, la ganancia neta tipica anda entre...", "o": ["2% y 10%", "30% y 50%", "60% y 70%"], "c": 0}]}, {"m": 1, "t": "Los 5 numeros que debes mirar siempre", "x": "Todo tu negocio, por mas complicado que parezca, se resume en cinco numeros. Si conoces estos cinco, tienes el control. Si no los conoces, vas a ciegas. Numero uno: el ingreso. Es todo el dinero que entra por ventas. Digamos mil dolares. Numero dos: el costo del producto. Es lo que TE costo la mercancia que vendiste. Ojo, no lo que compraste ese dia: lo que costo especificamente lo que vendiste. Digamos seiscientos. Numero tres: la ganancia bruta. Es el ingreso menos el costo del producto. Mil menos seiscientos, cuatrocientos dolares. Esta es la ganancia antes de tus gastos. Numero cuatro: los gastos. Aqui va todo lo demas: gasolina, mantenimiento de la van, telefono, seguro, renta si tienes, y tu tiempo. Digamos ciento veinte. Numero cinco: la ganancia neta. Ganancia bruta menos gastos. Cuatrocientos menos ciento veinte, doscientos ochenta dolares. Ese es el dinero que de verdad ganaste. Ahora, algo importante sobre los gastos en un negocio de ruta como el tuyo. En distribucion con entrega propia, los costos de la ruta pueden comerse entre un tercio y la mitad de tu ganancia bruta. Gasolina, mantenimiento, tu tiempo manejando. Por eso una ruta con paradas muy separadas y ordenes pequenas te puede estar costando dinero aunque vendas. La leccion es esta: no basta con vender. Hay que vender lo suficiente en cada parada para que la parada valga la pena. En lecciones mas adelante vamos a ver exactamente como mejorar eso. Por ahora, aprendete los cinco numeros: ingreso, costo del producto, ganancia bruta, gastos, ganancia neta.", "a": "Escribe tus cinco numeros de la semana pasada. Si no los tienes exactos, calculalos aproximados. Lo importante es empezar a mirarlos.", "q": [{"p": "La ganancia bruta es...", "o": ["El ingreso menos el costo del producto", "Todo lo que entro", "El ingreso menos los impuestos"], "c": 0}, {"p": "En un negocio de ruta, los costos de entrega pueden comerse...", "o": ["Casi nada", "Entre un tercio y la mitad de la ganancia bruta", "Solo el 5%"], "c": 1}, {"p": "Cual de estos NO es uno de los cinco numeros?", "o": ["Ganancia neta", "Costo del producto", "Cantidad de clientes"], "c": 2}]}, {"m": 1, "t": "Flujo de caja: vender mucho y no tener dinero", "x": "Esta leccion explica algo que confunde y asusta a muchos duenos: tener un mes de ventas excelente y aun asi no tener dinero en la mano. El flujo de caja es simplemente el dinero que entra y sale cada dia. Y aqui esta la trampa: tu ganancia y tu efectivo no son la misma cosa. Mira este caso. Vendiste dos mil dolares esta semana. Suena excelente. Pero mil doscientos de esa venta fue a credito, o sea, te deben. En la mano solo tienes ochocientos. Y esta semana te toca pagarle mil dolares al suplidor por el producto. Resultado: vendiste muchisimo, pero te faltan doscientos dolares para pagar. Eso es un problema de flujo de caja, y es una de las razones mas comunes por las que quiebran negocios que si eran rentables. Fijate bien: el negocio era bueno. La ganancia estaba ahi. Pero el dinero llego tarde. Que puedes hacer para protegerte. Primero, ten siempre un colchon de efectivo, aunque sea pequeno, para cubrir una semana de compras. Segundo, controla cuanto fias: si todo el mundo te debe, el banco eres tu, y sin cobrar intereses. Tercero, negocia plazos con tus suplidores: si tu cobras en dos semanas pero pagas en treinta dias, el flujo trabaja a tu favor en vez de en tu contra. Y cuarto, y es el mas importante: cobra a tiempo. Cada dia que un cliente se tarda en pagarte es un dia que tu estas financiando su negocio con tu dinero. Recuerda esta frase: la ganancia es opinion, el efectivo es realidad.", "a": "Suma cuanto te deben en total ahora mismo. Compara ese numero con lo que tienes disponible para comprar producto. Si te deben mas de lo que tienes, tu flujo esta apretado.", "q": [{"p": "Por que puedes vender mucho y quedarte sin dinero?", "o": ["Porque vendiste barato", "Porque mucha venta fue a credito y aun no te pagan", "Porque no vendiste suficiente"], "c": 1}, {"p": "Que te ayuda a que el flujo trabaje a tu favor?", "o": ["Cobrar rapido y pagar en plazos mas largos", "Fiarle a todo el mundo", "Comprar todo de contado siempre"], "c": 0}, {"p": "La frase para recordar es...", "o": ["Mas ventas siempre es mejor", "La ganancia es opinion, el efectivo es realidad", "El credito no tiene riesgo"], "c": 1}]}, {"m": 1, "t": "Punto de equilibrio: cuanto tienes que vender", "x": "Hay un numero que todo dueno deberia saber de memoria, y muy pocos lo saben: el punto de equilibrio. Es cuanto tienes que vender para no perder dinero. Ni ganas ni pierdes: quedas parejo. Todo lo que vendas por encima de eso, es ganancia. Se calcula asi. Primero, suma tus gastos fijos del mes: los que pagas vendas o no vendas. Gasolina base, seguro de la van, telefono, renta de bodega si tienes, tu sueldo minimo. Digamos que suman tres mil dolares al mes. Segundo, saca tu margen bruto promedio, en decimal. Si de cada dolar que vendes te quedan treinta centavos despues de pagar el producto, tu margen es cero punto tres, o sea treinta por ciento. Tercero, divide los gastos fijos entre el margen. Tres mil dividido entre cero punto tres, da diez mil dolares. Ese es tu punto de equilibrio: tienes que vender diez mil dolares al mes solo para quedar parejo. Si vendes doce mil, los dos mil de mas te dejan seiscientos de ganancia, porque el margen es treinta por ciento. Por que este numero es tan poderoso. Porque te deja de adivinar. Ya no dices ojala venda bastante: sabes exactamente cual es tu meta minima. Y puedes partirla: diez mil al mes son unos dos mil quinientos por semana, o unos cuatrocientos veinte al dia si trabajas seis dias. Ese es tu numero diario. Y fijate en algo importante: mientras mas alto tu margen, mas bajo tu punto de equilibrio. Si subes tu margen de treinta a treinta y cinco por ciento, tu punto de equilibrio baja de diez mil a ocho mil quinientos. O sea, mejorar el margen no solo te da mas ganancia: te hace menos fragil.", "a": "Calcula tu punto de equilibrio: gastos fijos del mes divididos entre tu margen. Despues divide ese numero entre los dias que trabajas. Ese es tu numero diario minimo.", "q": [{"p": "El punto de equilibrio es...", "o": ["Lo maximo que puedes vender", "Cuanto tienes que vender para no perder", "Tu ganancia del mes"], "c": 1}, {"p": "Como se calcula?", "o": ["Gastos fijos divididos entre el margen", "Ventas menos gastos", "Costo por dos"], "c": 0}, {"p": "Si subes tu margen, tu punto de equilibrio...", "o": ["Sube", "Baja", "No cambia"], "c": 1}]}, {"m": 1, "t": "Separa el dinero del negocio del personal", "x": "Este consejo parece simple, pero es de los que mas dinero salva. Si mezclas el dinero del negocio con el tuyo personal, van a pasar dos cosas malas: nunca vas a saber si el negocio de verdad gana, y te vas a gastar sin querer el dinero que era para comprar producto. Piensa en lo que pasa cuando todo esta en la misma bolsa. Cobras mil quinientos en el dia, ves la bolsa llena, y sacas para la compra de la casa, para una salida, para un gusto. Se siente bien. Pero ese dinero, en gran parte, no era ganancia: era el costo del producto que tienes que reponer. A la semana siguiente no te alcanza para llenar la van, y sin darte cuenta, el negocio empieza a encogerse. Como se arregla. Primero, ten una cuenta o al menos un sobre separado, solo para el negocio. Todo lo que cobras entra ahi. Segundo, paguese un sueldo. Si, un sueldo fijo, como si fuera un empleado. Puede ser semanal o quincenal, un monto que el negocio aguante. Eso te da disciplina y te deja ver la verdad: si el negocio no puede pagarte un sueldo digno, el problema no es que gastes mucho en la casa, es que el negocio necesita ajustes. Tercero, del dinero del negocio salen tres cosas y nada mas: reponer producto, pagar los gastos del negocio, y guardar para crecer y para impuestos. Cuarto, guarda los recibos del negocio aparte. A la hora de los impuestos, eso vale dinero real. Recuerda: si el negocio y tu bolsillo son la misma bolsa, nunca vas a saber como va el negocio.", "a": "Define tu sueldo semanal fijo del negocio y escribelo. De hoy en adelante, saca solo eso.", "q": [{"p": "Que pasa si mezclas el dinero del negocio con el personal?", "o": ["Nada, es lo mismo", "No sabes si el negocio gana y te gastas el dinero del producto", "Ganas mas"], "c": 1}, {"p": "Que es lo recomendado?", "o": ["Sacar dinero cuando haga falta", "Pagarte un sueldo fijo del negocio", "No sacar nunca nada"], "c": 1}, {"p": "Del dinero del negocio deben salir...", "o": ["Reponer producto, gastos del negocio, y guardar para crecer e impuestos", "Cualquier cosa", "Solo gustos personales"], "c": 0}]}, {"m": 1, "t": "Impuestos: apartalos antes de gastarte nada", "x": "Esta leccion es corta pero te puede evitar un dolor de cabeza grande. Cada vez que ganas, una parte de ese dinero no es tuya: es para los impuestos. El problema es que los impuestos llegan meses despues, y para entonces mucha gente ya se gasto ese dinero. La forma sana de manejarlo es esta: aparta un porcentaje de tu ganancia apenas entra, no despues. Lo pones en una cuenta o sobre separado y no lo tocas para nada. Ese dinero no es tuyo: solo esta pasando por tus manos. Que porcentaje. Eso depende de tu situacion, de como este registrado tu negocio y de tu estado. Por eso lo correcto es que un contador o preparador de impuestos de confianza te diga el numero exacto para tu caso. Vale la pena: cuesta poco comparado con lo que te ahorra. Ahora, lo que si te puedo decir con seguridad es esto: guarda todos los recibos. Las compras de producto, la gasolina, el mantenimiento de la van, el telefono, el seguro, las herramientas. Todos esos son gastos del negocio, y los gastos del negocio bajan lo que pagas de impuestos. Un recibo perdido es dinero perdido. Tu app ya te ayuda con esto: registra tus gastos ahi mismo, con su categoria, para que a fin de ano tengas todo ordenado y no tengas que buscar papeles. Y un ultimo consejo: no veas al contador como un gasto. Un buen preparador de impuestos se paga solo con lo que te ahorra y con los problemas que te evita. Esta leccion es informacion general, no consejo fiscal. Para tu caso exacto, apoyate en un profesional.", "a": "Abre un sobre o cuenta aparte para impuestos hoy mismo, y empieza a apartar ahi. Y si no tienes contador, pregunta por uno de confianza esta semana.", "q": [{"p": "Cuando debes apartar el dinero de los impuestos?", "o": ["Cuando llegue la fecha", "Apenas entra la ganancia", "Nunca, se paga despues"], "c": 1}, {"p": "Los recibos de gastos del negocio...", "o": ["No sirven", "Bajan lo que pagas de impuestos", "Solo sirven para la contabilidad"], "c": 1}, {"p": "Quien debe decirte el porcentaje exacto a apartar?", "o": ["Un contador o preparador de impuestos", "Otro comerciante", "Se calcula solo"], "c": 0}]}, {"m": 2, "t": "Margen y markup: la diferencia que cuesta dinero", "x": "Estas dos palabras se confunden todo el tiempo, y confundirlas te hace creer que ganas mas de lo que ganas. El margen es que parte de tu PRECIO de venta es ganancia. Se mide sobre el precio. El markup, o recargo, es cuanto le sumas ENCIMA a tu costo. Se mide sobre el costo. Vamos con un ejemplo. Un producto te costo seis dolares y lo vendes en diez. Ganas cuatro dolares. El margen es: cuatro dividido entre diez, que es el precio. Da cuarenta por ciento. El markup es: cuatro dividido entre seis, que es el costo. Da casi sesenta y siete por ciento. Es exactamente el mismo dinero ganado, pero el numero se ve muy distinto. Por eso, cuando alguien te diga que gana un sesenta por ciento, pregunta: sobre el precio o sobre el costo. La diferencia es enorme. Aqui esta el error caro que comete mucha gente: le suman treinta por ciento al costo y creen que tienen treinta por ciento de margen. No es asi. Si compras en diez y le sumas treinta por ciento, vendes en trece. Tu margen real es tres dividido entre trece, o sea veintitres por ciento. Creias que ganabas treinta y ganas veintitres. Y si tus gastos se comian ese veintitres, acabas de trabajar gratis. Para tu negocio, guiate siempre por el MARGEN, porque el margen te dice que parte de cada venta se queda contigo despues de pagar el producto. Es el numero que se conecta con tu punto de equilibrio y con tu ganancia neta. Regla practica para memorizar: markup siempre se ve mas grande que el margen. Si el numero suena muy bonito, probablemente te estan hablando de markup.", "a": "Toma tres productos tuyos. Calcula el margen real de cada uno: ganancia dividida entre el precio de venta. Puede que te sorprendas.", "q": [{"p": "El margen se mide sobre...", "o": ["El costo", "El precio de venta", "La ganancia bruta"], "c": 1}, {"p": "Compras en $10 y le sumas 30%. Tu margen real es...", "o": ["30%", "23%", "13%"], "c": 1}, {"p": "Cual numero siempre se ve mas grande?", "o": ["El margen", "El markup", "Son iguales"], "c": 1}]}, {"m": 2, "t": "La formula del precio", "x": "Cuando sabes tu costo y sabes el margen que quieres, sacar el precio correcto es cuestion de una formula. Y es facil. La formula es: precio igual a costo, dividido entre uno menos el margen que quieres. Vamos con numeros. Tu costo es seis dolares y quieres un margen de cuarenta por ciento. Uno menos cero punto cuarenta da cero punto sesenta. Seis dividido entre cero punto sesenta da diez dolares. Ese es tu precio. Otro ejemplo. Costo diez dolares, quieres cincuenta por ciento de margen. Uno menos cero punto cincuenta da cero punto cincuenta. Diez dividido entre cero punto cincuenta da veinte dolares. Fijate en lo que NO hay que hacer: no sumes el porcentaje al costo. Sumar cuarenta por ciento a seis te da ocho cuarenta, y ahi tu margen real seria solo veintiocho por ciento, no cuarenta. La division es lo correcto. Aqui te dejo unos numeros para que los tengas de referencia. Con un costo de seis dolares: para treinta por ciento de margen, vendes en ocho cincuenta y siete. Para cuarenta por ciento, en diez. Para cincuenta por ciento, en doce. Para sesenta por ciento, en quince. Y una recomendacion practica: despues de sacar el precio con la formula, redondealo hacia arriba a un numero comodo. Si te da diez con veinte, ponlo en diez noventa y nueve o en once. Nunca redondees hacia abajo, porque ahi se va tu margen. Esta formula deberia estar pegada en tu van. Es la diferencia entre poner precios por instinto y ponerlos con cabeza.", "a": "Escoge cinco productos y recalcula sus precios con la formula, apuntando al margen que quieres. Compara con lo que cobras hoy.", "q": [{"p": "La formula del precio es...", "o": ["Costo por el margen", "Costo dividido entre (1 menos el margen)", "Costo mas el margen"], "c": 1}, {"p": "Costo $10, margen deseado 50%. El precio es...", "o": ["$15", "$20", "$25"], "c": 1}, {"p": "Al redondear el precio final, conviene...", "o": ["Redondear hacia arriba", "Redondear hacia abajo", "Dejarlo con decimales raros"], "c": 0}]}, {"m": 2, "t": "Que margen buscar segun el producto", "x": "No todos los productos dan el mismo margen, y tratarlos igual es un error. En tu negocio hay basicamente dos tipos de producto, y se juegan distinto. El primer tipo son las maquinas y clippers. Son caras, muy competidas, y el barbero se sabe el precio de memoria porque las compara en internet. Ahi el margen tipico anda entre veinte y treinta y cinco por ciento. Poco, pero es lo que hay. El segundo tipo son los consumibles: cuchillas, shampoo, colonia, gel, aceite, capas, cuellos, limpiadores. Se acaban y se vuelven a comprar. El barbero no anda comparando precio de cada uno, y valora mas que tu se los lleves puntual. Ahi puedes trabajar entre cuarenta y sesenta por ciento, y en accesorios pequenos hasta setenta. Y aqui esta la estrategia completa. La maquina es el gancho: te abre la puerta, te hace ver completo, te da presencia. Pero tu ganancia de verdad esta en lo que se lleva CON la maquina y en lo que vuelve a comprar cada semana. Esto tiene una consecuencia practica muy importante. Si tu venta esta muy cargada de maquinas, vas a estar vendiendo mucho dinero y ganando poco. En cambio, si logras subir la proporcion de consumibles en cada visita, tu margen promedio sube sin que tengas que subirle el precio a nadie. Piensa en tu mezcla, no solo en tu volumen. Dos vendedores pueden vender lo mismo en dolares y uno ganar el doble que el otro, solo por la mezcla de lo que vendio. Regla para grabar: ofertas fuertes en buen margen, ofertas suaves o ninguna en las maquinas.", "a": "Revisa tus ventas de la semana. Que porcentaje fue maquinas y que porcentaje consumibles? Ponte una meta de subir los consumibles.", "q": [{"p": "Las maquinas y clippers tipicamente dan...", "o": ["Margen bajo, 20 a 35%", "Margen altisimo, 70%", "El mismo margen que todo"], "c": 0}, {"p": "Donde esta tu mejor margen?", "o": ["En las maquinas", "En los consumibles que se repiten", "En nada, todo es igual"], "c": 1}, {"p": "Dos vendedores venden lo mismo en dolares. Por que uno gana el doble?", "o": ["Por suerte", "Por la mezcla de productos que vendio", "Porque trabaja mas horas"], "c": 1}]}, {"m": 2, "t": "Ofertas que venden sin perder ganancia", "x": "Una oferta bien hecha no es una perdida. Es una inversion que se paga sola si trae suficiente volumen. Cuando bajas el precio, ganas un poco menos por unidad, pero si vendes muchas mas unidades, terminas ganando mas en total. El problema es cuando se descuenta sin hacer la cuenta. Te doy la regla clave: mientras MAS margen tiene un producto, mas te puedes dar el lujo de descontar. Mientras MENOS margen tiene, mas peligroso es el descuento. Unos numeros para que lo veas claro. Si tu margen es cuarenta por ciento y ofreces diez por ciento de descuento, necesitas vender treinta y tres por ciento mas unidades solo para quedar igual. Todo lo que vendas por encima de ese treinta y tres por ciento es ganancia extra. Pero si tu margen es veinticinco por ciento, que es el caso de las maquinas, y das quince por ciento de descuento, casi te quedas sin margen. Ahi estas trabajando de gratis o casi. La primera estrategia, y la mejor para ti, es el descuento por volumen. De una a cinco unidades, precio normal. De seis a once, un poquito menos. De doce o mas, un poco menos todavia. El cliente siente que gana comprando mas, tu mueves mas producto, y todos ganan. Ademas, el que compra en volumen se queda contigo y no le compra al competidor. La segunda estrategia es la oferta semanal. Escoge UN producto de buen margen, ponlo en oferta y ponle limite: solo esta semana. Eso crea urgencia y te da algo de que hablar en cada visita. Y la tercera, que es la mas rentable de todas porque no cuesta descuento: la venta cruzada. Ofrecer lo que combina con lo que ya compran. Al que lleva maquina, ofrecele aceite y cuchillas. Al que lleva shampoo, acondicionador. La maquina es el gancho; la ganancia esta en lo que la acompana.", "a": "Escoge un producto de 40% o mas de margen y armale una oferta por volumen de tres escalones. Ofrecela esta semana en cada parada.", "q": [{"p": "Con 40% de margen y 10% de descuento, cuanto mas debes vender para quedar igual?", "o": ["10% mas", "33% mas", "5% mas"], "c": 1}, {"p": "En que productos son mas peligrosos los descuentos grandes?", "o": ["En los de margen bajo, como las maquinas", "En los accesorios", "En los liquidos"], "c": 0}, {"p": "Cual estrategia sube la ganancia SIN dar descuento?", "o": ["La oferta semanal", "El descuento por volumen", "La venta cruzada"], "c": 2}]}, {"m": 2, "t": "Cuando y como subir los precios", "x": "Tus costos suben todos los anos. Si tus precios se quedan quietos, tu margen se va achicando solo, y un dia te das cuenta de que trabajas mas y ganas menos. Subir precios no es abuso: es mantener el negocio sano. Lo que importa es COMO lo haces. Primera regla: sube poco y con frecuencia, en vez de mucho de golpe. Un ajuste pequeno cada cierto tiempo casi ni se nota. Un salto grande despues de anos si duele y si genera reclamos. Segunda regla: empieza por donde el cliente no compara. Los accesorios y consumibles se ajustan sin drama. Las maquinas, que el barbero compara en internet, tocalas al final y con cuidado. Tercera regla: da un motivo real y dilo de frente. Subio el costo de fabrica. Subio el flete. Es la verdad y la gente la entiende. Lo que molesta no es el aumento: es enterarse por sorpresa en la factura. Cuarta regla: avisa antes. Una visita antes, mencionalo: la proxima semana ajusto un poco este producto, te aviso para que si quieres lleves ahora al precio viejo. Eso hace dos cosas: te da una venta grande hoy, y te hace ver como alguien de confianza que no juega sucio. Quinta regla: acompana la subida con servicio. Si el dia que subes llegas puntual, con todo el pedido completo y buena actitud, el aumento se justifica solo. Y una prueba inteligente: no subas todo de una vez. Sube dos o tres productos primero y observa si se siguen vendiendo igual. Si nadie se queja y las unidades no bajan, sigue con los demas. El cliente casi nunca se va por un precio un poco mas alto. Se va por mal servicio o por sentirse enganado.", "a": "Escoge dos productos de los que el cliente NO compara precio y subelos un poco esta semana. Observa si se siguen vendiendo igual.", "q": [{"p": "Como conviene subir los precios?", "o": ["Mucho de golpe cada varios anos", "Poco y con frecuencia", "Nunca subirlos"], "c": 1}, {"p": "Por donde conviene empezar a subir?", "o": ["Por las maquinas", "Por lo que el cliente no compara, como accesorios", "Por todo a la vez"], "c": 1}, {"p": "El cliente normalmente se va por...", "o": ["Un precio un poco mas alto", "Mal servicio o sentirse enganado", "Que le avisen del aumento"], "c": 1}]}, {"m": 3, "t": "Vender mas en cada visita", "x": "Cada parada de tu ruta te cuesta dinero: gasolina, tiempo, desgaste de la van. Por eso, la pregunta correcta no es cuantas barberias visito, sino cuanto vendo en cada una. En el negocio de distribucion con ruta propia hay tres palancas para mejorar, y ninguna requiere subir precios. La primera es densidad: mas paradas cerca unas de otras, menos millas entre ellas. La segunda es tamano de orden: vender mas en cada parada. Y la tercera es limpiar la ruta: soltar las paradas que nunca crecen y quedan lejos. Hoy vamos con la segunda, el tamano de la orden, que es la que mas rapido puedes mover. Antes de entrar, revisa en tu app que compra normalmente ese cliente y que se llevo la ultima vez. Llegar preparado ya te pone por delante del noventa por ciento de los vendedores. Adentro, no esperes a que te pidan: sugiere. Si siempre lleva shampoo, preguntale si le hace falta acondicionador. Si lleva maquina, ofrecele las cuchillas y el aceite que va a necesitar. Mucha gente compra mas simplemente porque se lo recordaste. Fijate en los estantes. Si ves un producto casi vacio, dilo con naturalidad: te queda poco de esto, te dejo unos cuantos. Ese comentario vende solo. Menciona siempre la oferta de la semana. Es una razon para comprar hoy y no la proxima vez. Y al que compra poco, tientalo con el descuento por volumen: muestrale cuanto ahorra si lleva mas. Recuerda: no eres solo el que entrega. Eres el que se asegura de que esa barberia nunca se quede sin lo que necesita. Esa actitud te hace vender mas y te hace dificil de reemplazar.", "a": "Antes de cada visita esta semana, revisa en la app lo que ese cliente compro la vez pasada, y llega con dos sugerencias listas.", "q": [{"p": "Cuales son las tres palancas de una ruta rentable?", "o": ["Densidad, tamano de orden, y limpiar paradas malas", "Precio, precio y precio", "Mas horas, mas millas, mas paradas"], "c": 0}, {"p": "Que debes hacer ANTES de entrar a la barberia?", "o": ["Nada, improvisar", "Revisar en la app que compra y que llevo la ultima vez", "Llamar primero"], "c": 1}, {"p": "Si ves un producto casi vacio en su estante...", "o": ["No digas nada", "Mencionalo y ofrece reponerlo", "Espera a que te lo pidan"], "c": 1}]}, {"m": 3, "t": "Abrir una barberia nueva: la puerta fria", "x": "Entrar a una barberia que no te conoce da nervios. Vamos a quitarle el misterio con un metodo simple que puedes repetir. Primero, el momento. No entres en hora pico con todas las sillas llenas. Busca media manana o media tarde, cuando hay calma. Un vendedor que interrumpe un corte empieza perdiendo. Segundo, la entrada. No llegues con discurso de vendedor. Saluda, presentate corto y di lo que haces en una frase: buenos dias, soy Nunez, de Nunez Beauty Supply, le traigo productos a las barberias de la zona directo al local. Eso es todo. Corto y claro. Tercero, y esto es lo mas importante: pregunta antes de ofrecer. Quien les surte ahora? Cada cuanto? Que es lo que mas se les acaba? Hay algo que les cueste conseguir? Escucha mas de lo que hablas. En esas respuestas esta tu venta. Cuarto, no trates de venderlo todo el primer dia. Tu meta en la primera visita es dos cosas: que te conozcan y conseguir una prueba pequena. Un pedido chico, o incluso una muestra. La primera venta no es la importante: la importante es la segunda. Quinto, deja algo fisico: una tarjeta, tu catalogo, tu numero de WhatsApp. Y algo que casi nadie hace: deja dicho exactamente cuando vuelves. Paso los martes por aqui, la semana que viene me doy la vuelta. Eso te convierte en alguien confiable antes de venderles nada. Sexto, cumple. Si dijiste martes, aparece el martes. Ahi se gana la cuenta. Y no te desanimes con los no. En este negocio, muchas barberias ya tienen proveedor. Tu no vas a reemplazarlo el primer dia: vas a estar ahi el dia que el otro les falle. Y siempre falla alguien.", "a": "Escoge dos barberias nuevas de tu zona y visitalas esta semana solo para presentarte y preguntar. Sin presionar venta.", "q": [{"p": "Cual es la meta de la primera visita?", "o": ["Vender lo maximo posible", "Que te conozcan y lograr una prueba pequena", "Bajar el precio del competidor"], "c": 1}, {"p": "Que es lo mas importante al entrar?", "o": ["Hablar de tus precios", "Preguntar y escuchar", "Dejar un descuento grande"], "c": 1}, {"p": "Si la barberia ya tiene proveedor...", "o": ["No vuelvas nunca", "Deja tu contacto, di cuando vuelves, y se constante", "Ofrece la mitad de precio"], "c": 1}]}, {"m": 3, "t": "Manejar las objeciones mas comunes", "x": "Una objecion no es un no. Casi siempre es una duda que no te dijeron completa. Vamos con las cuatro que mas vas a escuchar y como responderlas sin pelear ni rogar. Primera: esta caro. Nunca defiendas el precio de una: pregunta. Caro comparado con que? Ahi te vas a enterar de si lo compara con otro proveedor, con internet, o simplemente le sorprendio. Despues habla de valor, no de precio: yo te lo traigo aqui el mismo dia, sin que pares el negocio ni pagues envio, y si te falla algo te lo resuelvo. Si aun asi hay diferencia, ofrece volumen en vez de bajar el precio: llevando seis te queda a este precio. Segunda: ya tengo proveedor. Respeta eso, no lo ataques. Me parece bien, se ve que estas bien servido. Solo dejame ser tu segunda opcion para cuando algo falte o se atrase. Casi nadie dice que no a un plan B. Y el plan B, con el tiempo, se vuelve el plan A. Tercera: dejame pensarlo. Eso normalmente significa que falta informacion o que no es el momento. Pregunta suave: hay algo que te haga dudar? Si te dice que quiere ver como se vende, ofrece empezar chico: llevate tres, y si se mueven, la proxima te dejo mas. Cuarta: ahora no tengo dinero. No insistas: apunta. Cuando te conviene que pase? Y si es cliente bueno y de confianza, ahi es donde una venta a credito controlada hace sentido. Pero controlada, con limite. La regla que amarra todo: primero pregunta, despues responde. El vendedor que habla de mas pierde; el que pregunta, entiende, y el que entiende, vende. Y algo importante: nunca hables mal del competidor. Habla de lo tuyo. El que habla mal se ve chiquito.", "a": "Escribe tu respuesta de una frase para 'esta caro' y para 'ya tengo proveedor'. Practicalas en voz alta antes de la ruta.", "q": [{"p": "Cuando te dicen 'esta caro', lo primero es...", "o": ["Bajar el precio", "Preguntar: caro comparado con que?", "Cambiar de tema"], "c": 1}, {"p": "Si ya tienen proveedor, la mejor jugada es...", "o": ["Hablar mal del otro", "Ofrecerte como segunda opcion para cuando falle", "Regalar producto"], "c": 1}, {"p": "La regla que amarra el manejo de objeciones es...", "o": ["Primero pregunta, despues responde", "Habla mucho y rapido", "Insiste hasta que compren"], "c": 0}]}, {"m": 3, "t": "Cerrar la venta sin presionar", "x": "Cerrar no es presionar. Cerrar es ayudar a decidir. El cliente muchas veces ya quiere, pero necesita que le facilites el ultimo paso. Primero, aprende a ver las senales de que ya esta listo. Cuando pregunta por el precio con interes, cuando pregunta cada cuanto pasas, cuando toma el producto en la mano, cuando dice y esto como se usa. Todo eso es luz verde. Ahi no sigas explicando: cierra. El error mas comun es seguir vendiendo despues de que el cliente ya dijo que si. Cuando diga que si, callate y anota el pedido. Hablar de mas abre dudas nuevas. Segundo, la mejor forma de cerrar es con una pregunta de opcion, no de si o no. En vez de preguntar te lo llevas?, pregunta: te dejo tres o seis? Cualquiera de las dos respuestas es una venta. Es respetuoso y es efectivo. Tercero, el cierre por reposicion, que es el mas natural en tu negocio: te dejo lo mismo de la vez pasada y le agrego dos de este? Ahi no estas vendiendo, estas cuidandole el inventario. Cuarto, si de verdad no es hoy, cierra el proximo paso en vez de la venta. Perfecto, te lo anoto para el martes que viene. Eso mantiene el trato vivo y no te hace ver desesperado. Quinto, y esto es de personas serias: nunca prometas lo que no puedes cumplir para cerrar hoy. Vale mas perder una venta que perder la confianza. La confianza es lo que hace que te compren cien veces. El mejor vendedor de ruta no es el mas hablador. Es el que llega puntual, sabe lo que el cliente necesita, y lo hace facil.", "a": "Esta semana usa el cierre de opcion en cada visita: 'te dejo tres o seis?' en lugar de 'te lo llevas?'. Fijate en el resultado.", "q": [{"p": "Cuando el cliente dice que si, tu debes...", "o": ["Seguir explicando beneficios", "Callarte y anotar el pedido", "Ofrecer un descuento extra"], "c": 1}, {"p": "Un buen cierre de opcion suena como...", "o": ["Te lo llevas?", "Te dejo tres o seis?", "Estas seguro?"], "c": 1}, {"p": "Si hoy no se puede cerrar la venta, cierras...", "o": ["El proximo paso, la proxima visita", "Nada, te vas", "Un descuento grande"], "c": 0}]}, {"m": 3, "t": "Subir el ticket promedio", "x": "El ticket promedio es cuanto te compra un cliente cada vez que lo visitas. Es uno de los numeros mas poderosos de tu negocio, porque subirlo no te cuesta ni una milla mas de gasolina ni un minuto mas de ruta. Mira la matematica. Si visitas cien barberias al mes y cada una te compra en promedio ochenta dolares, vendes ocho mil. Si logras subir el promedio a noventa y cinco, con las mismas cien visitas vendes nueve mil quinientos. Mil quinientos dolares mas, sin manejar mas, sin gastar mas gasolina, sin conseguir un solo cliente nuevo. Y como tus costos de ruta no subieron, casi todo ese aumento es ganancia. Como se sube. Primero, agrupa: cuando alguien lleve una maquina, ten listo el paquete completo con aceite, cuchillas y limpiador. No lo dejes salir solo con la maquina. Segundo, ofrece el escalon siguiente: si lleva tres, muestrale que llevando seis el precio por unidad le baja. Muchos suben solo porque les hiciste la cuenta. Tercero, el producto nuevo: lleva siempre uno o dos productos nuevos a la vista y mencionalos. Lo que no se ve, no se vende. Cuarto, la lista de reposicion: llega sabiendo lo que compra siempre y ofrecelo antes de que se acuerde. Quinto, no todos suben igual. Mira tus clientes y separa los que compran poco pero podrian comprar mas. Esos son tu oportunidad mas barata. Y aqui va un dato que te da contexto: en el mundo de las barberias, el ticket promedio de un cliente en la silla anda alrededor de treinta y cuatro dolares, y las barberias que crecieron el ano pasado lo hicieron subiendo lo que gasta cada cliente, no consiguiendo clientes nuevos. Exactamente la misma logica aplica a ti con ellos.", "a": "Calcula tu ticket promedio: ventas del mes divididas entre numero de visitas. Ponte la meta de subirlo 10% este mes.", "q": [{"p": "Que es el ticket promedio?", "o": ["Cuanto te compra un cliente por visita", "Cuanto vendes al mes", "Cuantas visitas haces"], "c": 0}, {"p": "Por que subir el ticket promedio es tan rentable?", "o": ["Porque cuesta mas gasolina", "Porque no te cuesta ni una milla mas y casi todo es ganancia", "Porque bajan tus precios"], "c": 1}, {"p": "Que hacer cuando alguien lleva una maquina?", "o": ["Dejarlo salir solo con la maquina", "Ofrecer el paquete con aceite, cuchillas y limpiador", "Bajarle el precio"], "c": 1}]}, {"m": 4, "t": "Ganar la lealtad de tus barberias", "x": "Tu ventaja mas grande es algo que ningun competidor por internet puede copiar: tu ves a tus barberias en persona, cara a cara, en su propio local. Usa eso. Primera clave: conocerlos de verdad. Aprende el nombre del dueno y de cada barbero. Recuerda que producto usa cada uno y cual prefiere. Anota lo que te digan, aunque parezca poco: la marca que le gusta, cuando se le acaba, si tiene manias. La gente quiere sentirse tratada como persona, no como un numero de cuenta. Segunda clave: ser rapido y confiable. Si dices que llegas el martes, llega el martes. Nunca les falles con un producto que necesitan. Si hay un problema, resuelvelo rapido. La mayoria de los clientes cambia de proveedor por fallas de cumplimiento, no por precio. Tercera clave: conexion humana. Saludalos por su nombre, pregunta como va el negocio, felicitalos en fechas especiales. De vez en cuando, una muestra o un detalle a tus mejores clientes. La gente le compra a quien le cae bien y en quien confia. Cuarta clave: premiar la lealtad. Usa tu programa VIP para dar mejor precio o beneficios a los mas fieles. Que sientan que ser tu cliente de siempre les da algo que los nuevos no tienen. Y aqui va el dato que hace todo esto urgente: retener a un cliente cuesta alrededor de cinco veces menos que conseguir uno nuevo, y una mejora pequena en retencion se multiplica en ganancia. Cuidar al cliente que ya tienes es el mejor negocio que existe. Y esa es una ventaja que se construye visita por visita, no de un dia para otro.", "a": "Escoge tus 10 mejores clientes y anota en la app un dato personal de cada uno: nombre del dueno, que marca prefiere, algo que te haya contado.", "q": [{"p": "Retener un cliente cuesta aproximadamente...", "o": ["Lo mismo que conseguir uno nuevo", "5 veces menos que conseguir uno nuevo", "Mas que conseguir uno nuevo"], "c": 1}, {"p": "La mayoria de los clientes cambia de proveedor por...", "o": ["Precio", "Fallas de cumplimiento", "Publicidad"], "c": 1}, {"p": "Cual es tu ventaja que internet no puede copiar?", "o": ["Tener precios mas bajos", "Verlos en persona y tener relacion real", "Tener mas productos"], "c": 1}]}, {"m": 4, "t": "Servicio que hace que te prefieran", "x": "En un mundo donde el barbero puede comprar en internet, la pregunta es: por que te compraria a ti? La respuesta es el servicio, y es tu arma mas fuerte. Primero, la puntualidad. Llegar cuando dijiste que ibas a llegar genera una confianza que el internet no puede dar. El cliente organiza su semana sabiendo que tu apareces. Eso vale mas de lo que crees. Segundo, resolver rapido. Cuando algo sale mal, un producto defectuoso, un pedido incompleto, la velocidad con la que lo arreglas decide si el cliente se queda o se va. Y aqui hay algo curioso: un problema bien resuelto crea mas lealtad que si nunca hubiera pasado, porque le demuestras de que estas hecho. Tercero, el trato humano. Preguntar como va el negocio, acordarte de sus cosas, felicitarlo. Eso construye una relacion, no solo una venta. Cuarto, escucha de verdad. Preguntale que productos le gustaria que trajeras. Y cuando puedas, traelos, y diselo: acuerdate que me pediste esto, aqui esta. Ese momento vale mas que cualquier descuento. Quinto, hazle la vida facil. Que pedirte sea comodo: WhatsApp, factura clara, entrega ordenada. Mientras menos friccion, mas te compran. Sexto, cumple tu palabra siempre. Tu palabra es tu marca. Si prometes algo, cumplelo aunque te cueste. La competencia por internet puede tener precios, pero no puede mirarte a los ojos, ni resolverte un problema hoy mismo, ni conocerte por tu nombre. Ese trato personal es lo que te hace ganar, visita tras visita.", "a": "Piensa en un cliente al que le fallaste o que quedo dudoso. Visitalo esta semana y arregla la situacion de frente.", "q": [{"p": "Un problema bien resuelto...", "o": ["Siempre deja al cliente molesto", "Puede crear mas lealtad que si nunca hubiera pasado", "Es mejor ignorarlo"], "c": 1}, {"p": "Que hace que el cliente organice su semana contigo?", "o": ["Tus precios bajos", "Tu puntualidad", "Tu catalogo grande"], "c": 1}, {"p": "Tu palabra es...", "o": ["Negociable", "Tu marca", "Un detalle menor"], "c": 1}]}, {"m": 4, "t": "Manejar quejas y problemas", "x": "Las quejas dan miedo, pero son una de las mejores oportunidades que tienes. Un cliente que se queja todavia te quiere; el que ya se rindio simplemente deja de comprarte sin decir nada. Vamos con un metodo de cinco pasos que funciona siempre. Paso uno: escucha completo, sin interrumpir y sin defenderte. Deja que termine. La mitad del enojo se va solo cuando la persona siente que la escucharon de verdad. Paso dos: reconoce. No tienes que aceptar culpa que no es tuya, pero si reconocer el problema: tienes razon, ese pedido llego incompleto y eso te complico el dia. Esa frase baja la tension enseguida. Paso tres: no busques culpables delante del cliente. No digas es que el suplidor, es que el otro. Al cliente eso no le sirve. Di: dejame resolverlo. Paso cuatro: resuelve rapido y concreto. Di exactamente que vas a hacer y cuando. Manana antes de las once te traigo lo que falta. Y despues, cumplelo al pie de la letra. Paso cinco: cierra el ciclo. En la siguiente visita, menciona el tema: todo bien con lo del pedido pasado? Eso demuestra que no fue solo apagar un fuego, y ahi es donde se gana de verdad la confianza. Un detalle sobre el enojo: cuando un cliente esta molesto, no discutas ni subas el tono. Nunca ganas una discusion con un cliente; la ganas o pierdes la cuenta. Manten la calma y enfocate en la solucion. Y algo practico: anota las quejas en tu app. Si el mismo problema aparece tres veces, no es mala suerte: es algo de tu operacion que hay que arreglar.", "a": "Anota todas las quejas que recibas esta semana. Al final, revisa si alguna se repite: ahi tienes algo que arreglar.", "q": [{"p": "Un cliente que se queja...", "o": ["Ya esta perdido", "Todavia te quiere; el que se rindio ya no dice nada", "Solo quiere descuento"], "c": 1}, {"p": "Que NO debes hacer delante del cliente?", "o": ["Escuchar", "Buscar culpables y echarle la culpa a otros", "Reconocer el problema"], "c": 1}, {"p": "Si la misma queja aparece tres veces...", "o": ["Es mala suerte", "Es algo de tu operacion que hay que arreglar", "Hay que ignorarla"], "c": 1}]}, {"m": 4, "t": "Cuando un cliente NO te conviene", "x": "Esta leccion es incomoda pero necesaria: no todos los clientes te convienen, y aferrarte a los malos te frena. Hay tres tipos de cliente que te cuestan mas de lo que te dejan. El primero: el que no paga. Te compra, te promete, y siempre hay una excusa. Cada visita se vuelve una cobranza incomoda. Ese cliente no te esta comprando: te esta usando de banco. El segundo: el que compra migajas y queda lejos. Recuerda que cada parada te cuesta gasolina y tiempo. Si una barberia esta a veinte minutos del resto de tu ruta y te compra treinta dolares cada dos semanas, esa parada probablemente te esta costando dinero. En este negocio, eliminar las paradas que nunca crecen y quedan mal ubicadas es una de las formas mas rapidas de subir la ganancia. El tercero: el que abusa del trato. Regatea todo, exige lo que nadie mas exige, te falta el respeto o te hace perder tiempo cada visita. Ese te desgasta y te quita energia para los buenos. Que hacer, y aqui va la parte importante: no se trata de pelear ni de cortar de golpe. Se trata de ajustar condiciones. Al que no paga: solo de contado, y con lo que ya debe en un plan de pago. Al que queda lejos y compra poco: pasas cada dos o tres semanas, no cada semana, o le pones un minimo de compra. Al que abusa: precios firmes, sin excepciones. Con esos ajustes pasa una de dos: o el cliente se acomoda y se vuelve rentable, o se va solo. Las dos son buenas para ti. El tiempo que le quitas a un cliente malo se lo estas quitando a uno bueno.", "a": "Identifica una parada que te queda lejos y compra poco. Decide: le pones minimo de compra, la pasas a cada dos semanas, o la sueltas.", "q": [{"p": "Un cliente que nunca paga en realidad te esta usando de...", "o": ["Amigo", "Banco", "Consejero"], "c": 1}, {"p": "Una parada lejos que compra poco...", "o": ["Siempre conviene", "Puede estar costandote dinero", "No afecta nada"], "c": 1}, {"p": "Lo mejor con un cliente que no conviene es...", "o": ["Pelear y cortar de golpe", "Ajustar condiciones: contado, menos visitas, minimo de compra", "Aguantar todo"], "c": 1}]}, {"m": 4, "t": "Conseguir referidos: tus clientes te venden", "x": "El cliente feliz es el vendedor mas barato y mas creible que vas a tener. Entre barberias todos se conocen, y una recomendacion tuya de boca de otro barbero vale mas que cualquier anuncio. El problema es que casi nadie pide referidos. Se quedan esperando a que pasen solos. Vamos a hacerlo a proposito. Primero, el momento. Pide el referido justo despues de un momento bueno: cuando te agradecio algo, cuando le resolviste un problema, cuando te dijo que todo llego bien. Ahi esta contento y dispuesto. Segundo, la forma. Se especifico. No digas si conoces a alguien, avisame, porque eso no lleva a nada. Di: conoces alguna barberia por aqui cerca a la que le pueda pasar como paso contigo? Nombra la zona. Mientras mas concreta la pregunta, mas facil es que se acuerde de alguien. Tercero, hazlo facil. Pidele que te presente por WhatsApp, o pide el nombre y di que vas de su parte. Llegar diciendo me manda fulano te abre la puerta que a un desconocido le toma meses abrir. Cuarto, premialo. Ofrece algo por cada cliente nuevo que te traiga: un descuento, un producto de regalo, un beneficio en tu programa VIP. Que sepa que te ayudo y que lo valoraste. Quinto, y esto es de buena educacion y buen negocio: cuentale como le fue. Pase por donde tu amigo, gracias por la conexion. Eso cierra el circulo y hace que te siga recomendando. Y recuerda: para que te recomienden, primero tienes que ser recomendable. Los referidos son la consecuencia de un buen servicio, no un truco que reemplaza al servicio.", "a": "Pidele un referido concreto a tus tres mejores clientes esta semana, nombrando la zona. Y ofreceles algo a cambio.", "q": [{"p": "Cual es el mejor momento para pedir un referido?", "o": ["En la primera visita", "Justo despues de un momento bueno", "Cuando esta molesto"], "c": 1}, {"p": "Como debe ser la pregunta?", "o": ["General: 'si sabes de alguien, avisame'", "Especifica, nombrando la zona", "No hay que preguntar"], "c": 1}, {"p": "Los referidos son...", "o": ["Un truco que reemplaza al buen servicio", "La consecuencia de un buen servicio", "Cuestion de suerte"], "c": 1}]}, {"m": 5, "t": "Nunca te quedes sin lo que mas vendes", "x": "El inventario es dinero. Cada producto en tu van es dinero tuyo esperando venderse, y manejarlo bien es clave para ganar. La regla de oro es esta: nunca te quedes sin tus productos mas vendidos. Si un cliente te pide lo que siempre lleva y no lo tienes, no solo pierdes esa venta: le abres la puerta al competidor y le das una razon para buscar a otro. Y lo peor es que si lo consigue con otro, ese otro va a aprovechar para ofrecerle todo lo demas. Hay una regla que se cumple en casi todos los negocios: mas o menos el veinte por ciento de tus productos genera el ochenta por ciento de tus ventas. Ese veinte por ciento son tus estrellas. De esos, nunca, jamas, puedes quedarte sin. Del resto puedes ser mas flexible. Tu app te dice cuales son tus mas vendidos. Sacale esa lista y tratala distinto: siempre en la van, siempre con reserva, siempre en el pedido al suplidor. Segundo punto: el punto de reorden. No esperes a quedarte en cero para pedir. Si un producto tarda una semana en llegarte y vendes diez a la semana, cuando te queden diez ya tienes que estar pidiendo. Esa cuenta simple te evita quedarte corto. Tercero: cuidado con el inventario muerto. Ese producto que compraste y no se vende es dinero atrapado que no esta trabajando. Ahi profundizamos en otra leccion. Cuarto: organiza la van por marca. Te hace mas rapido, te evita errores, y te hace ver profesional delante del cliente. Un buen negocio no es el que tiene mas producto: es el que tiene el producto correcto, el que se vende, siempre disponible.", "a": "Saca de la app tu lista de los 20 productos mas vendidos. Esa lista es sagrada: nunca deben faltar en la van.", "q": [{"p": "Aproximadamente que porcentaje de tus productos genera el 80% de tus ventas?", "o": ["El 20%", "El 50%", "El 80%"], "c": 0}, {"p": "Cuando debes hacer el pedido de un producto?", "o": ["Cuando llegue a cero", "Antes: cuando queda lo que vendes mientras llega el pedido", "Una vez al ano"], "c": 1}, {"p": "Que pasa si te falta lo que el cliente siempre lleva?", "o": ["Nada", "Le abres la puerta al competidor", "El cliente espera sin problema"], "c": 1}]}, {"m": 5, "t": "Cuanto inventario cargar en la van", "x": "Cargar la van tiene un equilibrio delicado. Si cargas de menos, pierdes ventas. Si cargas de mas, tienes tu dinero paseando todo el dia sin venderse y arriesgado a danarse o perderse. Empecemos por entender el costo de cargar de mas. Cada dolar en producto que no se mueve es un dolar que no puedes usar para comprar lo que si se vende. Eso se llama dinero atrapado, y es el error silencioso mas comun en negocios de ruta. Como se calcula lo justo. Mira lo que vendiste de cada producto en las ultimas cuatro semanas y sacale el promedio semanal. Carga ese promedio mas un poco de colchon, digamos entre veinte y treinta por ciento extra para las sorpresas buenas. Para los productos estrella, un poco mas de colchon. Para los lentos, lo minimo. Segundo, agrupa por dia de ruta. Si los martes visitas la zona donde se vende mucho shampoo y poco clipper, carga distinto ese dia. No tienes que llevar todo el catalogo todos los dias. Tercero, deja un espacio de oportunidad: dos o tres productos nuevos o de oferta, a la vista, para mostrarlos. Lo que no se ve, no se vende. Cuarto, revisa la van al final del dia, no en la manana. Al final sabes exactamente que salio y que falta, y llegas al otro dia listo sin apuro. Quinto, cuida el producto: calor, sol y golpes en la van danan mercancia. Un producto danado es perdida directa de tu ganancia neta. La van bien cargada es la que tiene todo lo que se vende y nada que este ahi solo estorbando.", "a": "Revisa que hay en tu van ahora mismo. Anota tres productos que llevan semanas ahi sin venderse: esos son dinero atrapado.", "q": [{"p": "Cargar de mas significa...", "o": ["Estar preparado, sin costo", "Tener dinero atrapado que no trabaja", "Vender mas seguro"], "c": 1}, {"p": "Como calculas cuanto cargar de un producto?", "o": ["Al ojo", "Promedio semanal de las ultimas 4 semanas mas un colchon", "El doble de todo"], "c": 1}, {"p": "Cuando conviene revisar la van?", "o": ["En la manana con prisa", "Al final del dia", "Una vez al mes"], "c": 1}]}, {"m": 5, "t": "Producto muerto: como salir de el", "x": "Producto muerto es el que lleva meses sin venderse. Y aqui viene la parte que cuesta aceptar: ese producto ya te costo el dinero. Ese dinero ya salio de tu bolsillo. La unica pregunta que importa ahora es como recuperas la mayor parte posible. Muchos duenos cometen el error de aferrarse: no lo voy a rematar porque me costo tanto. Pero el costo ya lo pagaste, y mientras ese producto siga en la van o la bodega, te sigue costando: ocupa espacio, y sobre todo, tiene tu dinero congelado. Piensalo asi: cien dolares atrapados en producto muerto son cien dolares que no puedes usar para comprar producto que si rota y te deja ganancia varias veces al ano. Como sacarlo. Primero, identificalo: cualquier cosa que lleve mas de sesenta o noventa dias sin moverse. Tu app te lo puede decir. Segundo, empieza suave: ofrecelo como regalo o bono en compras grandes. Llevando seis de esto, te regalo uno de aquello. Recuperas valor sin quemar el precio. Tercero, si no se mueve, arma combos: junta el producto muerto con uno que si se vende, a un precio de paquete atractivo. Cuarto, si sigue sin salir, rematalo. Aunque sea al costo o un poco por debajo. Recuperar setenta dolares de cien es mejor que quedarte con cero por tiempo indefinido. Quinto, y lo mas importante: aprende de por que lo compraste. Casi siempre pasa por una de tres razones: te lo empujo un suplidor, seguiste una moda, o compraste mucho por un descuento. Reconocer el patron es lo que evita que se repita. Regla para grabar: el dinero que ya gastaste no vuelve, pero el dinero atrapado si se puede liberar.", "a": "Identifica los productos con mas de 60 dias sin venderse. Armales un combo o una oferta esta semana para liberar ese dinero.", "q": [{"p": "Que es lo mas importante con el producto muerto?", "o": ["Esperar a que suba de precio", "Recuperar la mayor parte del dinero y liberarlo", "Guardarlo hasta que se venda solo"], "c": 1}, {"p": "Por que duele tanto rematarlo?", "o": ["Porque piensas en lo que te costo, pero ese costo ya lo pagaste", "Porque no vale nada", "Porque es ilegal"], "c": 0}, {"p": "Por que suele comprarse producto que luego muere?", "o": ["Por planificacion", "Porque te lo empujo un suplidor, por moda, o por un descuento grande", "Por los clientes"], "c": 1}]}, {"m": 5, "t": "Negociar bien con tus suplidores", "x": "El dinero tambien se gana cuando compras, no solo cuando vendes. Y aqui hay una ventaja que casi nadie aprovecha: cada dolar que ahorras comprando se va directo, completo, a tu ganancia. En cambio, para ganar ese mismo dolar vendiendo, tendrias que vender varios dolares mas. Comprar bien es la palanca mas rapida que tienes. Primera regla: compra en volumen cuando puedas y cuando el producto rote. Los suplidores casi siempre mejoran el precio por cantidad. Y ojo con la trampa: solo aplica a producto que se vende. Comprar mucho de algo lento por un descuento es como se crea el producto muerto. Segunda regla: paga a tiempo y construye fama. El suplidor que confia en ti te da mejores precios, te avisa primero de lo nuevo, te aparta producto cuando escasea y a veces te da credito. Tu buena fama con ellos vale dinero real. Tercera regla: ten siempre dos o tres opciones. No para pelear, sino para saber. Si sabes lo que cobra el otro, negocias desde la realidad y no desde la suposicion. Un suplidor unico te deja sin poder y sin respaldo si falla. Cuarta regla: pregunta siempre. Hay mejor precio si pago de contado? Y si llevo esta cantidad? Que descuento hay por pronto pago? Que pasa si algo llega danado? Muchas veces el mejor precio existe, pero solo se lo dan al que pregunta. Quinta regla: negocia mas que el precio. Los plazos de pago, el flete, las devoluciones y los minimos a veces valen mas que unos centavos por unidad. Y sexta: lleva la cuenta de lo que le debes a cada suplidor, tus cuentas por pagar, en la app. El que no sabe cuanto debe, no puede negociar nada.", "a": "Escoge tu suplidor principal y pregunta esta semana tres cosas: mejor precio por volumen, descuento por pronto pago, y politica de devoluciones.", "q": [{"p": "Por que comprar bien es tan potente?", "o": ["Porque cada dolar ahorrado va completo a tu ganancia", "Porque los clientes lo notan", "Porque sube tus precios"], "c": 0}, {"p": "Comprar en volumen conviene...", "o": ["Siempre, sin importar el producto", "Solo en producto que de verdad rota", "Nunca"], "c": 1}, {"p": "Ademas del precio, que conviene negociar?", "o": ["Nada mas importa", "Plazos de pago, flete, devoluciones y minimos", "Solo el color de la caja"], "c": 1}]}, {"m": 5, "t": "Manejar el credito y cobrar a tiempo", "x": "Dar credito ayuda a vender mas, pero es un arma de doble filo. Esta leccion es para que lo uses a tu favor sin que te ahogue. Primero entiende esto: cada dolar que te deben es un dolar que ya trabajaste pero que todavia no tienes. Si se acumula, puedes vender muchisimo y aun asi no tener con que comprar producto. Reglas para manejarlo. Regla uno: ponle limite a cada cliente. No todos merecen el mismo credito. Un cliente nuevo empieza de contado o con un limite chico, y se lo vas subiendo segun como pague. Eso no es desconfianza: es orden. Regla dos: pon plazo claro desde el principio. Decir te lo dejo y me pagas cuando puedas es una receta para el desastre. Di: te lo dejo y me lo cubres la proxima visita. Claro y sin drama. Regla tres: no dejes pasar dos o tres semanas sin conversar. Mientras mas vieja la deuda, mas dificil se cobra. Y cobrar temprano es mucho mas comodo que cobrar tarde. Regla cuatro: como cobrar sin danar la relacion. No lo hagas como acusacion, hazlo como rutina: te traigo el pedido y aprovecho para cuadrar lo de la vez pasada. Es tu trabajo, no un favor que pides. El que cobra con naturalidad y firmeza se gana el respeto. Regla cinco: al que se atrasa siempre, pasalo a contado. Sin pelea: por ahora vamos de contado y cuando cuadremos lo de atras, volvemos a como estabamos. Regla seis: revisa tus cuentas por cobrar cada semana en la app. Lo que no se mira, se pudre. Y una verdad dura: una venta a credito no esta completa hasta que te pagan. El vendedor amable que nunca cobra termina quebrando; el que cobra con respeto y firmeza, prospera.", "a": "Revisa quien te debe hace mas de 3 semanas. Habla con cada uno esta semana y acuerda una fecha concreta de pago.", "q": [{"p": "Como se maneja el credito de un cliente nuevo?", "o": ["Credito completo desde el dia uno", "Contado o limite chico, y se sube segun como pague", "Sin limite"], "c": 1}, {"p": "Cual es la mejor forma de cobrar?", "o": ["Como acusacion", "Como rutina natural del trabajo, con firmeza y respeto", "No cobrar para no incomodar"], "c": 1}, {"p": "Una venta a credito esta completa cuando...", "o": ["Entregas el producto", "Te pagan", "Anotas la factura"], "c": 1}]}, {"m": 6, "t": "Mentalidad de dueno de negocio", "x": "Esta leccion no es de tecnicas, es de mentalidad, y quizas es la mas importante de todas. Porque las tecnicas se aprenden en semanas; la mentalidad es la que decide si las usas. Primero: el dueno piensa en el negocio, no solo en el dia. El que solo piensa en el dia se pregunta cuanto vendi hoy. El dueno se pregunta esta mi negocio mejor que el mes pasado. Son dos preguntas muy distintas y llevan a dos vidas muy distintas. Segundo: decide con numeros, no con emociones. Tus numeros te dicen la verdad aunque no te guste; tus corazonadas a veces te enganan. Cuando tengas que decidir si subir un precio, soltar un cliente o comprar mas producto, mira los numeros primero. Tercero: reinvierte. Parte de lo que ganas tiene que volver al negocio: mas producto, mejores herramientas, mas ruta. El que se lo gasta todo se queda igual ano tras ano. Cuarto: piensa a largo plazo. No sacrifiques una relacion de anos por ganar un poco mas hoy. Los negocios que duran se construyen con clientes que duran. Quinto: cuida tu nombre. En este negocio, tu reputacion con las barberias y con los suplidores es tu activo mas valioso, y es el unico que no puedes comprar. Se construye lento y se pierde rapido. Sexto: hazte responsable de todo. Cuando algo sale mal, la pregunta util no es de quien fue la culpa, sino que voy a hacer distinto. Esa pregunta te da poder; la otra te deja de victima. Y septimo: sigue aprendiendo. El hecho de que estes escuchando esto ya te pone por delante. El dueno que aprende un poco cada semana, en un ano es otra persona.", "a": "Escribe la respuesta a esta pregunta: esta mi negocio mejor que hace tres meses? Y en que lo mides.", "q": [{"p": "La pregunta de un dueno es...", "o": ["Cuanto vendi hoy", "Esta mi negocio mejor que el mes pasado", "Cuantas horas trabaje"], "c": 1}, {"p": "Cual es tu activo mas valioso y que no puedes comprar?", "o": ["La van", "Tu reputacion", "El inventario"], "c": 1}, {"p": "Cuando algo sale mal, la pregunta util es...", "o": ["De quien fue la culpa", "Que voy a hacer distinto", "Por que me pasa a mi"], "c": 1}]}, {"m": 6, "t": "Metas que si se cumplen", "x": "Todo el mundo dice quiero vender mas. Pero quiero vender mas no es una meta: es un deseo. Una meta de verdad tiene numero y tiene fecha. Vamos a aprender a ponerlas bien. Una meta bien puesta tiene cuatro cosas. Numero uno: es concreta, con cifra. En vez de vender mas, di subir el ticket promedio de ochenta a noventa dolares. Numero dos: tiene fecha. Para el ultimo dia del mes. Numero tres: es tuya de verdad, o sea, depende de acciones que tu controlas. Numero cuatro: se puede medir. Si no puedes medirla, no puedes saber si la lograste. Ahora, el truco que hace que las metas se cumplan: partelas. Una meta de mes asusta y se olvida. Divide: si tu meta es doce mil al mes, son tres mil por semana, y unos quinientos por dia si trabajas seis dias. Ese numero diario es el que te guia en la ruta, y te dice a media manana si vas bien o tienes que apretar. Segundo truco: junto a la meta de resultado, ponte una meta de accion. La meta de resultado es vender mas; la de accion es ofrecer venta cruzada en cada visita, o visitar dos barberias nuevas por semana. La accion la controlas tu al cien por ciento, y es la que produce el resultado. Tercero: escribela y ponla donde la veas. En la van, en el telefono. Una meta que no se ve, se olvida. Cuarto: revisala cada semana, no cada mes. Si esperas al final del mes para ver como vas, ya no te da tiempo de corregir. Y quinto: celebra cuando la cumplas, aunque sea algo pequeno. El cerebro repite lo que se premia. La diferencia entre un sueno y una meta es un numero y una fecha.", "a": "Escribe UNA meta con numero y fecha para este mes. Partela en meta semanal y diaria, y ponla donde la veas todos los dias.", "q": [{"p": "Una meta de verdad tiene...", "o": ["Numero y fecha", "Buenas intenciones", "Mucha motivacion"], "c": 0}, {"p": "Que es una meta de accion?", "o": ["El resultado que quieres", "Algo que tu controlas, como ofrecer venta cruzada en cada visita", "Un deseo"], "c": 1}, {"p": "Cada cuanto conviene revisar la meta?", "o": ["Cada semana", "Al final del mes", "Al final del ano"], "c": 0}]}, {"m": 6, "t": "Tu primer empleado", "x": "Llega un momento en que tu tiempo se acaba antes que las oportunidades. Ahi aparece la pregunta: contrato a alguien? Vamos a verlo con cabeza fria. Primera pregunta: puede el negocio pagarlo? No con la ilusion de que va a vender mucho, sino con los numeros de hoy. Suma el costo real: sueldo, impuestos de nomina, seguro, y el tiempo que TU vas a gastar ensenandole las primeras semanas. Si el negocio no aguanta ese costo hoy, todavia no es el momento. Segunda pregunta: que le vas a soltar? Antes de contratar, haz una lista de en que se te va el tiempo. Casi siempre hay tareas que no requieren ser el dueno: cargar la van, entregas simples, ordenar inventario, hacer facturas. Esas son las primeras que se sueltan. Lo que no se suelta al principio es la relacion con tus mejores clientes y el manejo del dinero. Tercera: empieza por medio tiempo. No tienes que saltar a un empleado de tiempo completo. Alguien unos dias por semana te deja probar sin arriesgar el negocio. Cuarta: ensena con sistema, no de memoria. Escribe como se hacen las cosas: como se carga la van, como se hace un pedido, como se trata al cliente. Tu app y tu manual ya son parte de eso. Un negocio que solo funciona con tu cabeza no puede crecer. Quinta: mide. Ponle numeros claros a lo que esperas: entregas por dia, errores, cobros al dia. Sin numeros, no sabras si ayuda o estorba. Y una advertencia honesta: contratar mal cuesta caro y desgasta. Mejor esperar dos meses mas y traer a la persona correcta, que apurarse con la equivocada. Contrata por actitud y honestidad; lo tecnico se ensena.", "a": "Haz la lista de tareas que hoy haces tu y que NO requieren ser el dueno. Esa lista es el trabajo de tu primer empleado.", "q": [{"p": "Antes de contratar, lo primero es preguntarse...", "o": ["Si el negocio puede pagarlo con los numeros de hoy", "Si tienes ganas de compania", "Si el competidor tiene empleados"], "c": 0}, {"p": "Que NO se suelta al principio?", "o": ["Cargar la van", "La relacion con tus mejores clientes y el manejo del dinero", "Ordenar inventario"], "c": 1}, {"p": "Por que se contrata mejor?", "o": ["Por experiencia tecnica unicamente", "Por actitud y honestidad; lo tecnico se ensena", "Por quien pida menos sueldo"], "c": 1}]}, {"m": 6, "t": "Expandir la ruta o poner otra van", "x": "Crecer suena bien, pero crecer mal es una de las formas mas rapidas de quebrar. Vamos a ver como hacerlo con orden. Antes de expandir, exprime lo que ya tienes. Es mucho mas barato subir el ticket promedio de tus clientes actuales que conseguir clientes nuevos. Si tus clientes de hoy te compran ochenta y podrian comprar cien, ahi tienes crecimiento sin gastar un centavo mas en gasolina. Esa es siempre la primera parada. Cuando si tiene sentido expandir. Cuando tu ruta ya esta apretada de tiempo, cuando estas dejando pedidos sin atender, o cuando hay una zona cercana con suficientes barberias juntas. Y aqui esta la clave que casi nadie mira: la densidad. Una zona nueva conviene si las paradas estan cerca unas de otras. Diez barberias juntas en un barrio valen mucho mas que veinte regadas por todo el estado. En rutas de reparto, el costo de manejar entre paradas es el que se come la ganancia. Como expandir sin quemarte. Primero, prueba antes de comprometerte: agrega la zona nueva un dia a la semana y mide durante dos meses. Cuanto vendes, cuanto gastas, cuanto tiempo te toma. Segundo, no descuides lo que ya tienes. El error clasico es emocionarse con lo nuevo y empezar a fallarle a los clientes viejos. Ahi pierdes por un lado lo que ganas por el otro. Tercero, sobre la segunda van: solo cuando la primera este llena de verdad y el negocio genere efectivo estable. Una van vacia es un gasto fijo que te ahoga rapido. Cuarto, mira el flujo de caja antes de expandir. Crecer consume efectivo: mas producto, mas gasolina, mas credito. Muchos negocios rentables quiebran creciendo demasiado rapido. Crece cuando lo que tienes ya funciona bien, no para tapar que no funciona.", "a": "Antes de pensar en zonas nuevas, escoge 10 clientes actuales que podrian comprarte mas y trabaja en subirles el ticket este mes.", "q": [{"p": "Cual es la forma mas barata de crecer?", "o": ["Abrir zonas nuevas", "Subir el ticket promedio de los clientes que ya tienes", "Comprar otra van"], "c": 1}, {"p": "Que hace que una zona nueva convenga?", "o": ["Que este lejos", "La densidad: paradas cerca unas de otras", "Que sea grande aunque este regada"], "c": 1}, {"p": "Por que quiebran negocios rentables al crecer?", "o": ["Porque crecer consume efectivo y se quedan sin flujo", "Porque venden mucho", "Por los clientes nuevos"], "c": 0}]}, {"m": 6, "t": "Tu plan de crecimiento paso a paso", "x": "Para cerrar la Academia, vamos a juntar todo en un plan que puedas seguir. Crecer no es un golpe de suerte: es una secuencia. Paso uno: conoce tus numeros. Ganancia neta, margen, punto de equilibrio, ticket promedio y cuentas por cobrar. Sin esto, todo lo demas es adivinar. Este paso es la base de todos los otros. Paso dos: arregla el margen. Revisa precios, sube donde el cliente no compara, cambia la mezcla hacia los consumibles, y negocia mejor con tus suplidores. Mejorar el margen sube tu ganancia sin vender un producto mas. Paso tres: retiene. Cuida a los clientes que ya tienes, porque retener cuesta cinco veces menos que conseguir. Y aqui hay algo que te da una ventaja enorme: tus clientes, las barberias, estan recibiendo menos clientes nuevos que antes y estan creciendo vendiendo mas a los que ya tienen. O sea, tu cliente necesita vender mas producto en su silla. Si tu llegas como el que le ayuda a vender mas, y no solo como el que le entrega cajas, te vuelves su socio. Eso vale mas que cualquier descuento. Paso cuatro: sube el ticket. Venta cruzada, volumen, producto nuevo a la vista, y sugerir en cada visita. Paso cinco: limpia la ruta. Suelta o ajusta las paradas que no dan, y aprieta la densidad. Paso seis: recien ahi, expande. Zona nueva, mas dias, o mas adelante otra van y un empleado. Y paso siete: mide cada mes y ajusta. Si subio, sigue; si no, cambia algo. Los negocios grandes empezaron pequenos, pero con duenos que cuidaban sus numeros, cuidaban a su gente, y mejoraban un poco cada mes. Ese eres tu, Sensei. Sigue adelante.", "a": "Escoge en cual de los 7 pasos estas hoy, y define UNA accion concreta para avanzar al siguiente este mes.", "q": [{"p": "Cual es el paso uno del plan?", "o": ["Expandir la ruta", "Conocer tus numeros", "Contratar a alguien"], "c": 1}, {"p": "Que estan haciendo las barberias para crecer hoy?", "o": ["Vendiendo mas a los clientes que ya tienen", "Consiguiendo muchos clientes nuevos", "Bajando precios"], "c": 0}, {"p": "Cuando conviene expandir?", "o": ["Primero que nada", "Despues de arreglar margen, retencion, ticket y ruta", "Cuando el negocio va mal"], "c": 1}]}]};
+var MODULOS = DATOS.modulos, LEC = DATOS.lecciones;
 
-var LECCIONES = [
-{ titulo: "Ganancia no es lo mismo que ingreso", texto:
-"Bienvenido a tu primera lección. Vamos a empezar con el error más común en los negocios, y entenderlo te va a cambiar la forma de ver tu dinero. Muchos dueños ven entrar mil dólares en el día y piensan: gané mil dólares. Pero eso no es verdad. Ese dinero que entra se llama ingreso, y de ahí todavía tienes que pagar muchas cosas. Piénsalo así: si vendiste mil dólares, pero el producto que vendiste te costó seiscientos, y gastaste cincuenta en gasolina de la ruta, entonces tu ganancia real no es mil. Es mil, menos seiscientos, menos cincuenta. O sea, trescientos cincuenta dólares. Esa es tu ganancia de verdad. El resto nunca fue tuyo: era para reponer el producto y cubrir tus gastos. Por eso, graba esta regla de oro: el dinero que entra no es tuyo hasta que le descuentas lo que costó ganarlo. El número que de verdad importa se llama ganancia neta. Es lo que te queda después de pagar el producto y todos tus gastos. Ese es el número que debes vivir mirando. No te emociones con lo que vendes; emociónate con lo que te queda. En las próximas lecciones vamos a ver cómo hacer que tu ganancia neta sea cada vez más grande. Nos vemos en la siguiente." },
+/* ═══════════ Guardado ═══════════ */
+function LS(k,d){ try{ var v=localStorage.getItem(k); return v===null?d:JSON.parse(v); }catch(e){ return d; } }
+function SS(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+var hechas = LS('nbsa_hechas',{}), favs = LS('nbsa_favs',{}), notas = LS('nbsa_notas',{});
+var stats = LS('nbsa_stats',{min:0,racha:0,ultimo:''});
+var filtro='todas', consulta='';
 
-{ titulo: "Precios y márgenes: cómo cobrar bien", texto:
-"En esta lección vas a aprender a poner precios que te dejen ganancia de verdad. Primero, dos palabras que se confunden todo el tiempo: margen y markup. El margen es qué parte de tu precio de venta es ganancia. El markup es cuánto le sumas encima a tu costo. Un ejemplo: te costó seis dólares y lo vendes en diez. Ganas cuatro. Ese cuatro, dividido entre el precio de diez, es cuarenta por ciento de margen. El mismo cuatro, dividido entre el costo de seis, es casi sesenta y siete por ciento de markup. Es el mismo dinero, pero se ve distinto. Para tu negocio, guíate por el margen. Ahora, la fórmula para sacar tu precio es simple: precio igual a costo, dividido entre uno menos el margen que quieres. Si te costó seis y quieres cuarenta por ciento, divides seis entre cero punto seis, y te da diez dólares. Y aquí va lo importante: no todos los productos dan el mismo margen. Las máquinas y clippers son caras y muy competidas, así que dan poco margen, entre veinte y treinta y cinco por ciento. Pero los líquidos, como shampoo, colonia y gel, son consumibles, se acaban y se vuelven a comprar, y ahí puedes ganar entre cuarenta y sesenta por ciento. La estrategia es esta: la máquina es el gancho para atraer al cliente, y ganas de verdad en lo que se lleva con ella. Recuerda: el precio correcto no es el más barato, es el que te deja ganancia y el cliente paga con gusto." },
-
-{ titulo: "Cómo ganar la lealtad de tus barberías", texto:
-"Tu ventaja más grande es algo que ningún competidor por internet puede copiar: tú ves a tus barberías en persona, cara a cara, todos los días. Usa eso. La primera clave es conocerlos de verdad. Aprende el nombre del dueño y de los barberos. Recuerda qué producto usa cada barbería y cuál prefiere. La gente quiere sentirse tratada como persona, no como un número. La segunda clave es ser rápido y confiable. Si dices que llegas el martes, llega el martes. Nunca les falles con un producto que necesitan. Si hay un problema, resuélvelo rápido. La mayoría de los clientes se van cuando su proveedor les falla. La tercera clave es crear conexión humana. Salúdalos por su nombre, pregúntales cómo va el negocio. De vez en cuando, dale una muestra gratis o un pequeño detalle a tus mejores clientes. La gente le compra a quien le cae bien y en quien confía. Y la cuarta clave: premia la lealtad. Usa tu programa VIP para dar mejores precios a los más fieles. Haz que se sientan parte de algo exclusivo. Recuerda siempre: cuidar al cliente que ya tienes es el mejor negocio que existe, porque conseguir uno nuevo cuesta cinco veces más. La competencia por internet puede tener precios, pero no puede darle a tus barberías lo que tú sí: trato personal, confianza y una relación de verdad." },
-
-{ titulo: "Ofertas que venden sin perder ganancia", texto:
-"Una oferta bien hecha no es una pérdida. Es una inversión que se paga sola si trae suficiente volumen. Cuando bajas el precio, ganas un poco menos por cada unidad, pero si vendes muchas más unidades, terminas ganando más en total. La primera estrategia, y la mejor, es el descuento por volumen. Premia al que compra más con un mejor precio por unidad. Por ejemplo: de una a cinco unidades, a diez dólares cada una. De seis a once, a nueve cincuenta. De doce o más, a nueve. El cliente siente que gana comprando más, y tú mueves más producto y más rápido. La segunda estrategia es la oferta semanal. Cada semana, elige un solo producto de buen margen y ponlo en oferta, con límite: solo esta semana. Eso crea urgencia y le da a las barberías una razón para comprarte ahora. Pero cuidado: ofrece descuentos fuertes solo en productos de buen margen. En las máquinas, que dan poco margen, ofrece descuentos suaves o ninguno. La tercera estrategia es la venta cruzada, y sube tu ganancia sin descontar nada. Consiste en ofrecer productos que combinan con lo que ya compran. Al que compra máquinas, ofrécele aceite, cuchillas y limpieza. Al que compra shampoo, ofrécele acondicionador. La máquina es el gancho; la ganancia está en lo que la acompaña." },
-
-{ titulo: "Vender más en cada visita de la ruta", texto:
-"Cada visita a una barbería es una oportunidad, y la mayoría de los vendedores la desaprovecha porque solo toma el pedido y se va. Tú vas a hacer algo diferente. Antes de entrar, revisa en tu app qué compra normalmente ese cliente y qué compró la última vez. Así llegas preparado. Cuando estés ahí, no esperes a que te pidan: sugiere. Si siempre compra shampoo, pregúntale si le hace falta acondicionador. Si compra máquinas, ofrécele las cuchillas y el aceite que va a necesitar. La gente muchas veces compra más solo porque se lo recordaste. Segundo: menciona siempre la oferta de la semana. Es una razón para que compre hoy y no la próxima vez. Tercero: fíjate en lo que se le está acabando. Si ves que un producto está bajo en su estante, díselo con confianza: te queda poco de esto, ¿te dejo unos cuantos? Cuarto: al cliente que compra poco, tiéntalo con el descuento por volumen. Muéstrale cuánto ahorra si lleva más. Recuerda: no eres solo el que entrega; eres el que ayuda a la barbería a nunca quedarse sin lo que necesita. Esa actitud te hace vender más y te hace indispensable." },
-
-{ titulo: "Negociar bien con tus suplidores", texto:
-"El dinero también se gana cuando compras, no solo cuando vendes. Si compras mejor, ganas más en cada venta. Primera regla: compra en volumen cuando puedas. Los suplidores casi siempre te dan mejor precio si les compras más cantidad. Un costo más bajo significa más margen para ti en cada producto que vendes. Segunda regla: paga a tiempo y construye confianza. El suplidor que confía en ti te da mejores precios, te avisa primero de los productos nuevos, y a veces te da crédito. Tu buena fama con ellos vale dinero. Tercera regla: compara. No te cases con un solo suplidor sin saber si otro te da mejor precio por lo mismo. Tener dos o tres opciones te da poder para negociar. Cuarta regla: pregunta siempre por descuentos y términos. ¿Hay mejor precio si pago de contado? ¿Si compro esta cantidad? Muchas veces el descuento está ahí, pero solo lo dan si preguntas. Y quinta: lleva la cuenta de lo que le debes a cada suplidor, tus cuentas por pagar, para nunca perder el control. Recuerda: cada dólar que ahorras comprando es un dólar directo a tu ganancia." },
-
-{ titulo: "No quedarte sin lo que más vendes", texto:
-"El inventario es dinero. Cada producto en tu van es dinero tuyo esperando a venderse, y manejarlo bien es clave para ganar. La primera regla de oro es esta: nunca te quedes sin tus productos más vendidos. Si un cliente te pide lo que siempre lleva y no lo tienes, no solo pierdes esa venta: le abres la puerta al competidor. Ten siempre stock de lo que más se mueve. Segundo: conoce tus números. Tu app te dice cuáles son tus productos más vendidos. Esos son tus estrellas; cuídalos y tenlos siempre. Tercero: cuidado con el inventario muerto. Ese producto que compraste y no se vende, que lleva meses ahí, es dinero atrapado que no está trabajando. Es mejor bajarle el precio y salir de él para recuperar tu dinero y comprar lo que sí se vende. Cuarto: rellena tu van con orden, por marca, para que sea rápido y no se te olvide nada. Y quinto: revisa tu inventario seguido, para pedir a tiempo y nunca llegar corto a la ruta. Recuerda: un buen negocio no es el que tiene más producto, es el que tiene el producto correcto, el que se vende, siempre disponible." },
-
-{ titulo: "Manejar el crédito y cobrar a tiempo", texto:
-"Dar crédito, fiar, ayuda a vender más, pero es un arma de doble filo. Esta lección te enseña a manejarlo sin que te ahogue. Primero entiende esto: cada dólar que te deben es un dólar que ya trabajaste, pero que todavía no tienes en la mano. Si se acumula demasiado, puedes vender muchísimo y aun así quedarte sin efectivo para comprar más producto. A eso se le llama un problema de flujo de caja. Para no caer ahí, sigue estas reglas. Regla uno: no dejes que un cliente pase de dos o tres semanas sin abonar. Habla con él antes de que la deuda crezca. Regla dos: ponle un límite a cuánto le fías a cada cliente. No todos merecen el mismo crédito. Regla tres: al que siempre paga tarde, véndele más de contado y menos a crédito. Regla cuatro: revisa tus cuentas por cobrar cada semana en la app, para no perder de vista quién te debe. Cobrar a tiempo es tan importante como vender. Una venta a crédito no está completa hasta que te pagan. El vendedor amable que nunca cobra termina quebrando; el que cobra con respeto pero con firmeza, prospera." },
-
-{ titulo: "Servicio que hace que te prefieran a ti", texto:
-"En un mundo donde el cliente puede comprar por internet, ¿por qué te compraría a ti? La respuesta es el servicio, y es tu arma secreta. Primero, la puntualidad. Llegar cuando dijiste que ibas a llegar genera una confianza que el internet no puede dar. El cliente sabe que puede contar contigo. Segundo, resolver rápido. Cuando algo sale mal, un producto defectuoso, un pedido incompleto, la velocidad con que lo arreglas es lo que decide si el cliente se queda o se va. Un problema bien resuelto crea más lealtad que si nunca hubiera pasado. Tercero, el trato humano. Preguntar cómo va el negocio, acordarte de sus cosas, felicitarlo en una fecha especial. Eso construye una relación, no solo una venta. Cuarto, escucha. Pregúntale qué productos le gustaría que trajeras, y cuando puedas, tráelos. El cliente que se siente escuchado no se va con la competencia. Y quinto, cumple siempre tu palabra. Tu palabra es tu marca. La competencia por internet puede tener precios más bajos, pero no puede mirarte a los ojos, ni resolverte un problema hoy mismo, ni conocerte por tu nombre. Ese trato personal es lo que te hace ganar, visita tras visita." },
-
-{ titulo: "Mentalidad de dueño de negocio", texto:
-"Esta lección no es de técnicas, es de mentalidad, y quizás es la más importante de todas. Un dueño de negocio piensa diferente. Primero: separa el dinero del negocio del dinero personal. Si los mezclas, nunca vas a saber si el negocio gana o pierde, y te vas a gastar sin querer el dinero que era para comprar producto. Ten una cuenta o un sobre solo para el negocio, y págate un sueldo fijo, en vez de sacar dinero cuando sea. Segundo: reinvierte para crecer. Parte de lo que ganas debe volver al negocio, en más producto, en mejores herramientas, en crecer tu ruta. El que se lo gasta todo, se queda igual. Tercero: piensa a largo plazo. No sacrifiques una relación de años por ganar un poco más hoy. Cuarto: decide con números, no con emociones. Tus números te dicen la verdad; tus corazonadas a veces te engañan. Revisa tus ganancias cada semana y cada mes. Y quinto: cuida tu nombre. En este negocio, tu reputación con las barberías y con los suplidores es tu activo más valioso. El que conoce sus números y cuida su palabra, manda en su negocio. El que va a ciegas y gasta sin control, tarde o temprano tropieza." },
-
-{ titulo: "Cómo crecer tu negocio paso a paso", texto:
-"Para cerrar, vamos a juntar todo en un plan de crecimiento. Crecer no es solo vender más hoy; es construir algo cada vez más grande y sólido. Paso uno: primero retén, después crece. Antes de buscar clientes nuevos, asegúrate de cuidar bien a los que ya tienes, porque retener cuesta cinco veces menos que conseguir. Un cliente feliz, además, te recomienda gratis con otras barberías, y esa es la mejor publicidad que existe. Paso dos: vende más a los que ya te compran. Con venta cruzada y buen servicio, cada cliente puede darte más sin que gastes en conseguir uno nuevo. Paso tres: agrega productos con inteligencia. Pregunta a tus clientes qué les gustaría que trajeras, y trae lo que de verdad se va a vender. Paso cuatro: expande tu ruta poco a poco. Cada barbería nueva bien atendida es un ingreso más, pero crece a un ritmo que puedas cumplir, porque fallar por crecer muy rápido te cuesta caro. Paso cinco: mide y ajusta. Cada mes, compara si tus ganancias subieron. Si sí, sigue por ahí. Si no, ajusta precios, gastos o cobros. Recuerda: los negocios grandes empezaron pequeños, pero con dueños que cuidaban sus números, cuidaban a su gente, y mejoraban un poco cada mes. Ese eres tú. Sigue adelante, Sensei." }
-];
-
-// ---------- Estado ----------
+/* ═══════════ Voz ═══════════ */
 var synth = window.speechSynthesis;
-var idxLeccion = -1;
-var chunks = [];
-var idxChunk = 0;
-var reproduciendo = false;
-var cancelManual = false;
-var velocidad = 1;
-var vozES = null;
-var wakeLock = null;
+var iLec = -1, chunks = [], iCh = 0, cancelM = false, vel = 1, voz = null, wl = null;
+var tocando = false, tempRestante = 0, arranque = 0;
 
-// ---------- Voz ----------
 function elegirVoz(){
-  var voces = synth.getVoices() || [];
-  // Preferir una voz en español; probar es-US, es-MX, es-ES, o cualquier "es"
-  var pref = ['es-us','es-mx','es-419','es-es','es'];
-  for(var p=0; p<pref.length; p++){
-    for(var i=0;i<voces.length;i++){
-      var l = (voces[i].lang||'').toLowerCase();
-      if(l.indexOf(pref[p])===0){ return voces[i]; }
-    }
-  }
-  for(var j=0;j<voces.length;j++){
-    if((voces[j].lang||'').toLowerCase().indexOf('es')===0) return voces[j];
-  }
+  if(!synth) return null;
+  var v = synth.getVoices()||[], p=['es-us','es-mx','es-419','es-es','es'];
+  for(var i=0;i<p.length;i++) for(var j=0;j<v.length;j++)
+    if((v[j].lang||'').toLowerCase().indexOf(p[i])===0) return v[j];
   return null;
 }
-function cargarVoz(){ vozES = elegirVoz(); }
-if(synth){
-  cargarVoz();
-  if(typeof synth.onvoiceschanged !== 'undefined'){
-    synth.onvoiceschanged = cargarVoz;
-  }
-}
+if(synth){ voz=elegirVoz(); if(typeof synth.onvoiceschanged!=='undefined') synth.onvoiceschanged=function(){ voz=elegirVoz(); }; }
 
-// ---------- Partir el texto en pedazos cortos (por oración) ----------
-function partirEnChunks(txt){
-  // Divide por punto, signos, etc., y luego corta los pedazos muy largos por coma.
-  var crudo = txt.match(/[^.!?]+[.!?]*/g) || [txt];
-  var res = [];
-  crudo.forEach(function(s){
-    s = s.trim();
-    if(!s) return;
-    if(s.length <= 200){ res.push(s); return; }
-    // pedazo largo: cortar por coma
-    var partes = s.split(/,\s*/);
-    var buffer = '';
-    partes.forEach(function(p){
-      if((buffer + ' ' + p).length > 200){
-        if(buffer) res.push(buffer.trim());
-        buffer = p;
-      } else {
-        buffer = buffer ? (buffer + ', ' + p) : p;
-      }
+function partir(t){
+  var c = t.match(/[^.!?]+[.!?]*/g)||[t], r=[];
+  c.forEach(function(s){
+    s=s.trim(); if(!s) return;
+    if(s.length<=200){ r.push(s); return; }
+    var buf=''; s.split(/,\s*/).forEach(function(p){
+      if((buf+' '+p).length>200){ if(buf) r.push(buf.trim()); buf=p; }
+      else buf = buf? buf+', '+p : p;
     });
-    if(buffer) res.push(buffer.trim());
+    if(buf) r.push(buf.trim());
   });
-  return res;
+  return r;
 }
 
-// ---------- Wake Lock (mantener pantalla encendida) ----------
-async function pedirWakeLock(){
-  try{
-    if('wakeLock' in navigator){
-      wakeLock = await navigator.wakeLock.request('screen');
-      wakeLock.addEventListener('release', function(){});
-      actualizarNotaPantalla(true);
-    }
-  }catch(e){ actualizarNotaPantalla(false); }
+/* ═══════════ Pantalla encendida ═══════════ */
+function pedirWL(){
+  try{ if('wakeLock' in navigator && navigator.wakeLock.request){
+    navigator.wakeLock.request('screen').then(function(x){ wl=x; notaP(true); }).catch(function(){ notaP(false); });
+  } }catch(e){ notaP(false); }
 }
-function soltarWakeLock(){
-  try{ if(wakeLock){ wakeLock.release(); wakeLock = null; } }catch(e){}
-  actualizarNotaPantalla(false);
+function soltarWL(){ try{ if(wl){ wl.release(); wl=null; } }catch(e){} notaP(false); }
+function notaP(a){
+  var e=document.getElementById('npant');
+  e.innerHTML = a ? '<span style="color:#6cd08f;font-weight:700">&#9728;&#65039; Pantalla encendida</span>'
+                  : 'La pantalla se mantiene encendida al reproducir';
 }
-function actualizarNotaPantalla(activa){
-  var el = document.getElementById('pantalla-nota');
-  if(activa){ el.innerHTML = '<span class="pantalla-on">🔆 Pantalla encendida — no se apagará</span>'; }
-  else { el.textContent = 'La pantalla se mantiene encendida al reproducir'; }
-}
-// Si vuelve a primer plano y estaba reproduciendo, volver a pedir el wake lock
-document.addEventListener('visibilitychange', function(){
-  if(document.visibilityState === 'visible' && reproduciendo){ pedirWakeLock(); }
-});
+document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'&&tocando) pedirWL(); });
 
-// ---------- Reproducción ----------
-function hablarChunk(){
-  if(idxChunk >= chunks.length){ leccionTerminada(); return; }
-  var u = new SpeechSynthesisUtterance(chunks[idxChunk]);
-  u.lang = 'es-US';
-  if(vozES) u.voice = vozES;
-  u.rate = velocidad;
-  u.pitch = 1;
-  u.onend = function(){
-    if(cancelManual){ cancelManual = false; return; }
-    idxChunk++;
-    actualizarParte();
-    if(idxChunk < chunks.length){ hablarChunk(); }
-    else { leccionTerminada(); }
+/* ═══════════ Reproduccion ═══════════ */
+function hablar(){
+  if(!synth) return;
+  if(iCh>=chunks.length){ terminada(); return; }
+  var u=new SpeechSynthesisUtterance(chunks[iCh]);
+  u.lang='es-US'; if(voz)u.voice=voz; u.rate=vel;
+  u.onend=function(){
+    if(cancelM){ cancelM=false; return; }
+    iCh++; subtit();
+    if(iCh<chunks.length) hablar(); else terminada();
   };
-  u.onerror = function(){
-    // Si hubo un corte y seguimos en modo reproducir, intentar continuar
-    if(!cancelManual && reproduciendo){
-      idxChunk++;
-      if(idxChunk < chunks.length){ hablarChunk(); } else { leccionTerminada(); }
-    }
-    cancelManual = false;
+  u.onerror=function(){
+    if(!cancelM && tocando){ iCh++; if(iCh<chunks.length) hablar(); else terminada(); }
+    cancelM=false;
   };
   synth.speak(u);
 }
-
-function reproducir(){
-  if(idxLeccion < 0){ cargarLeccion(0, false); }
-  if(!chunks.length){ chunks = partirEnChunks(LECCIONES[idxLeccion].texto); }
-  reproduciendo = true;
-  actualizarPlayUI();
-  pedirWakeLock();
-  cancelManual = true;      // por si había algo hablando
-  synth.cancel();
-  setTimeout(function(){ cancelManual = false; hablarChunk(); }, 120);
+function tocar(){
+  if(!synth){ alert('Este telefono no soporta lectura por voz. Prueba con Chrome.'); return; }
+  if(iLec<0) cargar(0,false);
+  if(!chunks.length) chunks = partir(LEC[iLec].x);
+  tocando=true; arranque=Date.now(); botonUI(); pedirWL();
+  cancelM=true; try{synth.cancel();}catch(e){}
+  setTimeout(function(){ cancelM=false; hablar(); },120);
 }
-
 function pausar(){
-  reproduciendo = false;
-  cancelManual = true;
-  try{ synth.cancel(); }catch(e){}
-  soltarWakeLock();
-  actualizarPlayUI();
+  sumarMinutos();
+  tocando=false; cancelM=true; try{ if(synth) synth.cancel(); }catch(e){}
+  soltarWL(); botonUI();
 }
-
-function togglePlay(){
-  if(!synth){ mostrarAviso('Tu navegador no soporta lectura por voz. Usa Chrome.'); return; }
-  if(reproduciendo){ pausar(); } else { reproducir(); }
+function sumarMinutos(){
+  if(arranque){
+    var m = (Date.now()-arranque)/60000;
+    if(m>0.1){ stats.min = Math.round((stats.min+m)*10)/10; SS('nbsa_stats',stats); pintarStats(); }
+    arranque=0;
+  }
 }
-
-function leccionTerminada(){
-  // Avanzar sola a la siguiente lección y seguir reproduciendo (como un podcast)
-  if(idxLeccion < LECCIONES.length - 1){
-    cargarLeccion(idxLeccion + 1, false);
-    if(reproduciendo){ setTimeout(reproducir, 400); }
+function terminada(){
+  marcarHecha(iLec);
+  if(tempRestante>0){
+    tempRestante--;
+    if(tempRestante===0){ pausar(); alert('&#9201; Temporizador terminado. Buen trabajo.'); return; }
+  }
+  if(iLec < LEC.length-1){
+    var seguia = tocando;
+    cargar(iLec+1,false);
+    if(seguia) setTimeout(tocar,400);
   } else {
-    reproduciendo = false;
-    soltarWakeLock();
-    actualizarPlayUI();
-    actualizarParte(true);
+    pausar();
+    document.getElementById('psub').textContent='Terminaste todas las lecciones. Felicidades!';
+  }
+}
+function cargar(i,auto){
+  if(i<0||i>=LEC.length) return;
+  sumarMinutos();
+  cancelM=true; try{ if(synth) synth.cancel(); }catch(e){}
+  iLec=i; chunks=partir(LEC[i].x); iCh=0;
+  SS('nbsa_ultima',i);
+  document.getElementById('ptit').textContent = LEC[i].t;
+  subtit(); pintarLista();
+  if(auto) setTimeout(tocar,150);
+}
+function marcarHecha(i){
+  if(i<0||hechas[i]) return;
+  hechas[i]=true; SS('nbsa_hechas',hechas); pintarProgreso(); pintarLista();
+}
+function subtit(){
+  var e=document.getElementById('psub');
+  if(iLec<0){ e.innerHTML='&nbsp;'; return; }
+  var mo = MODULOS.filter(function(m){return m.n===LEC[iLec].m;})[0];
+  var tot=chunks.length||1;
+  e.textContent = mo.nombre+'  \u00b7  Leccion '+(iLec+1)+' de '+LEC.length+'  \u00b7  parte '+Math.min(iCh+1,tot)+'/'+tot;
+}
+function botonUI(){
+  document.getElementById('bplay').innerHTML = tocando ? '&#9208;' : '&#9654;';
+  pintarLista();
+}
+
+/* ═══════════ Pintar ═══════════ */
+function pintarProgreso(){
+  var n=Object.keys(hechas).length, pct=Math.round(n/LEC.length*100);
+  document.getElementById('pbar').style.width=pct+'%';
+  document.getElementById('ptxt').textContent = n+' de '+LEC.length+' lecciones  ('+pct+'%)';
+}
+function pintarStats(){
+  document.getElementById('sminu').textContent = Math.round(stats.min);
+  document.getElementById('sracha').textContent = stats.racha;
+  document.getElementById('sfav').textContent = Object.keys(favs).length;
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function pintarLista(){
+  var cont=document.getElementById('lista'), html='';
+  var q = consulta.trim().toLowerCase();
+  MODULOS.forEach(function(mo){
+    var items=[];
+    LEC.forEach(function(l,i){
+      if(l.m!==mo.n) return;
+      if(filtro==='pend' && hechas[i]) return;
+      if(filtro==='hechas' && !hechas[i]) return;
+      if(filtro==='fav' && !favs[i]) return;
+      if(q && (l.t+' '+l.x).toLowerCase().indexOf(q)<0) return;
+      items.push(i);
+    });
+    if(!items.length) return;
+    var hech = items.filter(function(i){return hechas[i];}).length;
+    html += '<div class="mod-cab"><span class="mod-pill" style="background:'+mo.color+'">'+mo.icono+' '+esc(mo.nombre)+'</span><span class="mod-cnt">'+hech+'/'+items.length+'</span></div><div class="lista">';
+    items.forEach(function(i){
+      var l=LEC[i], act=(i===iLec);
+      html += '<div class="lec'+(act?' on':'')+(hechas[i]?' hecha':'')+'" data-i="'+i+'">'
+           +  '<div class="lnum">'+(hechas[i]?'&#10003;':(i+1))+'</div>'
+           +  '<div class="ltit">'+esc(l.t)+'</div>'
+           +  '<div class="lico">'+(favs[i]?'&#11088;':(act&&tocando?'&#9654;':'&#9834;'))+'</div></div>';
+    });
+    html += '</div>';
+  });
+  if(!html) html='<p style="text-align:center;color:#7b83b5;margin:24px">Sin resultados</p>';
+  cont.innerHTML=html;
+  Array.prototype.forEach.call(cont.querySelectorAll('.lec'),function(el){
+    el.onclick=function(){ cargar(parseInt(el.getAttribute('data-i'),10),true); };
+  });
+}
+
+/* ═══════════ Racha ═══════════ */
+(function racha(){
+  var hoy=new Date().toISOString().slice(0,10);
+  if(stats.ultimo!==hoy){
+    var ayer=new Date(Date.now()-86400000).toISOString().slice(0,10);
+    stats.racha = (stats.ultimo===ayer) ? (stats.racha||0)+1 : 1;
+    stats.ultimo=hoy; SS('nbsa_stats',stats);
+  }
+})();
+
+/* ═══════════ Modales ═══════════ */
+function abrirModal(html){
+  document.getElementById('mcont').innerHTML='<button class="mcerrar" onclick="cerrarModal()">&times;</button>'+html;
+  document.getElementById('modal').classList.add('on');
+  window.scrollTo(0,0);
+}
+function cerrarModal(){ document.getElementById('modal').classList.remove('on'); }
+
+function verTexto(){
+  if(iLec<0) return;
+  var l=LEC[iLec];
+  abrirModal('<h3 class="mtit">'+esc(l.t)+'</h3>'
+    +'<div class="texto">'+esc(l.x)+'</div>'
+    +'<div class="accion"><b>&#9989; TU ACCION DE ESTA SEMANA</b>'+esc(l.a)+'</div>'
+    +'<div class="bfila"><button class="btn oro" onclick="imprimirLeccion('+iLec+')">&#128424; Imprimir esta leccion</button>'
+    +'<button class="btn" onclick="favorita('+iLec+')">'+(favs[iLec]?'&#11088; Quitar favorita':'&#9734; Favorita')+'</button></div>');
+}
+function favorita(i){
+  if(favs[i]) delete favs[i]; else favs[i]=true;
+  SS('nbsa_favs',favs); pintarStats(); pintarLista(); cerrarModal();
+}
+function verNota(){
+  if(iLec<0) return;
+  abrirModal('<h3 class="mtit">&#128221; Tu nota</h3>'
+    +'<p style="font-size:13px;color:#9aa2cc;margin:4px 0">'+esc(LEC[iLec].t)+'</p>'
+    +'<textarea class="notat" id="nt" placeholder="Escribe lo que se te ocurrio...">'+esc(notas[iLec]||'')+'</textarea>'
+    +'<div class="bfila"><button class="btn oro" onclick="guardarNota()">Guardar</button></div>');
+}
+function guardarNota(){
+  var v=document.getElementById('nt').value;
+  if(v.trim()) notas[iLec]=v; else delete notas[iLec];
+  SS('nbsa_notas',notas); cerrarModal();
+}
+function verRepaso(){
+  if(iLec<0) return;
+  var l=LEC[iLec], h='<h3 class="mtit">&#10067; Repaso</h3><p style="font-size:13px;color:#9aa2cc;margin:4px 0 12px">'+esc(l.t)+'</p>';
+  l.q.forEach(function(qq,qi){
+    h+='<div class="q"><div class="qp">'+(qi+1)+'. '+esc(qq.p)+'</div>';
+    qq.o.forEach(function(op,oi){
+      h+='<button class="qo" data-q="'+qi+'" data-o="'+oi+'" onclick="responder(this,'+qi+','+oi+','+qq.c+')">'+esc(op)+'</button>';
+    });
+    h+='</div>';
+  });
+  abrirModal(h+'<div id="qres" style="text-align:center;font-size:15px;font-weight:700;color:#E3B23C;margin-top:6px"></div>');
+  window._qok=0; window._qhecho={};
+}
+function responder(btn,qi,oi,cor){
+  if(window._qhecho[qi]) return;
+  window._qhecho[qi]=true;
+  var cont=btn.parentNode;
+  Array.prototype.forEach.call(cont.querySelectorAll('.qo'),function(b){
+    var o=parseInt(b.getAttribute('data-o'),10);
+    if(o===cor) b.classList.add('ok');
+    else if(b===btn) b.classList.add('mal');
+  });
+  if(oi===cor) window._qok++;
+  if(Object.keys(window._qhecho).length===3){
+    document.getElementById('qres').textContent='Acertaste '+window._qok+' de 3'+(window._qok===3?'  \u00a1Perfecto!':'');
   }
 }
 
-function cargarLeccion(i, autoplay){
-  if(i < 0 || i >= LECCIONES.length) return;
-  cancelManual = true;
-  try{ synth.cancel(); }catch(e){}
-  idxLeccion = i;
-  chunks = partirEnChunks(LECCIONES[i].texto);
-  idxChunk = 0;
-  try{ localStorage.setItem('nbs_academia_leccion', String(i)); }catch(e){}
-  document.getElementById('ahora-tit').textContent = LECCIONES[i].titulo;
-  actualizarParte();
-  renderLista();
-  if(autoplay){ setTimeout(reproducir, 150); }
+/* ═══════════ Imprimir ═══════════ */
+function bloqueLeccion(i){
+  var l=LEC[i], mo=MODULOS.filter(function(m){return m.n===l.m;})[0];
+  return '<div class="lecp"><h3>Modulo '+mo.n+' \u2014 '+esc(mo.nombre)+'</h3>'
+    +'<h2>'+(i+1)+'. '+esc(l.t)+'</h2>'
+    +'<p>'+esc(l.x)+'</p>'
+    +'<div class="acc"><b>TU ACCION DE ESTA SEMANA:</b><br>'+esc(l.a)+'</div></div>';
+}
+function imprimirLeccion(i){
+  document.getElementById('imp').innerHTML =
+    '<h1>NBS Academia</h1><p style="color:#666">Nunez Beauty Supply</p>'
+    + bloqueLeccion(i) + '<div class="pie">Nunez Beauty Supply \u2014 Providence, Rhode Island</div>';
+  cerrarModal(); setTimeout(function(){ window.print(); },200);
+}
+function imprimirCurso(){
+  var h='<h1>NBS Academia</h1><p style="color:#666">Curso completo \u2014 Nunez Beauty Supply</p>';
+  LEC.forEach(function(l,i){ h+=bloqueLeccion(i); });
+  h+='<div class="pie">Nunez Beauty Supply \u2014 Providence, Rhode Island</div>';
+  document.getElementById('imp').innerHTML=h;
+  setTimeout(function(){ window.print(); },250);
 }
 
-function siguiente(){ if(idxLeccion < LECCIONES.length-1){ cargarLeccion(idxLeccion+1, reproduciendo); } }
-function anterior(){ if(idxLeccion > 0){ cargarLeccion(idxLeccion-1, reproduciendo); } }
-
-// ---------- UI ----------
-function actualizarPlayUI(){
-  document.getElementById('ico-play').style.display = reproduciendo ? 'none' : 'block';
-  document.getElementById('ico-pause').style.display = reproduciendo ? 'block' : 'none';
+/* ═══════════ Extras ═══════════ */
+function leccionDelDia(){
+  var pend=[]; LEC.forEach(function(l,i){ if(!hechas[i]) pend.push(i); });
+  if(!pend.length){ alert('Ya escuchaste todas. Escoge una para repasar.'); return; }
+  var dia=Math.floor(Date.now()/86400000);
+  cargar(pend[dia % pend.length], true);
 }
-function actualizarParte(fin){
-  var el = document.getElementById('ahora-parte');
-  if(idxLeccion < 0){ el.innerHTML = '&nbsp;'; return; }
-  if(fin){ el.textContent = 'Fin de las lecciones. ¡Bien hecho!'; return; }
-  var total = chunks.length || 1;
-  var actual = Math.min(idxChunk+1, total);
-  el.textContent = 'Lección ' + (idxLeccion+1) + ' de ' + LECCIONES.length + '  ·  parte ' + actual + '/' + total;
-}
-function renderLista(){
-  var cont = document.getElementById('lista');
-  cont.innerHTML = LECCIONES.map(function(l, i){
-    var activa = (i === idxLeccion) ? ' activa' : '';
-    return '<div class="lec'+activa+'" data-i="'+i+'">' +
-      '<div class="lec-num">'+(i+1)+'</div>' +
-      '<div class="lec-tit">'+l.titulo+'</div>' +
-      '<div class="lec-ico">'+((i===idxLeccion && reproduciendo)?'▶':'♪')+'</div>' +
-    '</div>';
-  }).join('');
-  Array.prototype.forEach.call(cont.querySelectorAll('.lec'), function(el){
-    el.addEventListener('click', function(){
-      var i = parseInt(el.getAttribute('data-i'), 10);
-      cargarLeccion(i, true);
-    });
-  });
-}
-function mostrarAviso(msg){
-  var a = document.getElementById('aviso');
-  a.textContent = msg; a.style.display = 'block';
+function temporizador(){
+  var n=prompt('Cuantas lecciones quieres escuchar y que se apague sola?\n\nEscribe un numero (ej: 3). Deja vacio para quitarlo:', tempRestante||'');
+  if(n===null) return;
+  n=parseInt(n,10);
+  tempRestante = (n>0)? n : 0;
+  document.getElementById('btemp').innerHTML = tempRestante? '&#9201; '+tempRestante+' lecciones' : '&#9201; Temporizador';
 }
 
-// Botones
-document.getElementById('btn-play').addEventListener('click', togglePlay);
-document.getElementById('btn-sig').addEventListener('click', siguiente);
-document.getElementById('btn-ant').addEventListener('click', anterior);
-Array.prototype.forEach.call(document.querySelectorAll('.velo'), function(el){
-  el.addEventListener('click', function(){
-    document.querySelectorAll('.velo').forEach(function(x){ x.classList.remove('activa'); });
-    el.classList.add('activa');
-    velocidad = parseFloat(el.getAttribute('data-v'));
-    // si está reproduciendo, aplicar la velocidad desde el pedazo actual
-    if(reproduciendo){ cancelManual = true; synth.cancel(); setTimeout(function(){ cancelManual=false; hablarChunk(); }, 150); }
-  });
+/* ═══════════ Botones ═══════════ */
+document.getElementById('bplay').onclick=function(){ tocando?pausar():tocar(); };
+document.getElementById('bsig').onclick=function(){ if(iLec<LEC.length-1) cargar(iLec+1,tocando); };
+document.getElementById('bant').onclick=function(){ if(iLec>0) cargar(iLec-1,tocando); };
+document.getElementById('babrir').onclick=verTexto;
+document.getElementById('bnota').onclick=verNota;
+document.getElementById('brepaso').onclick=verRepaso;
+document.getElementById('bdia').onclick=leccionDelDia;
+document.getElementById('btemp').onclick=temporizador;
+document.getElementById('bimpcurso').onclick=imprimirCurso;
+document.getElementById('bq').oninput=function(){ consulta=this.value; pintarLista(); };
+
+Array.prototype.forEach.call(document.querySelectorAll('.chip[data-v]'),function(el){
+  el.onclick=function(){
+    document.querySelectorAll('.chip[data-v]').forEach(function(x){x.classList.remove('on');});
+    el.classList.add('on'); vel=parseFloat(el.getAttribute('data-v'));
+    if(tocando){ cancelM=true; try{synth.cancel();}catch(e){} setTimeout(function(){cancelM=false;hablar();},150); }
+  };
+});
+Array.prototype.forEach.call(document.querySelectorAll('.chip[data-f]'),function(el){
+  el.onclick=function(){
+    document.querySelectorAll('.chip[data-f]').forEach(function(x){x.classList.remove('on');});
+    el.classList.add('on'); filtro=el.getAttribute('data-f'); pintarLista();
+  };
 });
 
-// Service Worker: hace que la Academia abra aunque no haya internet.
+/* ═══════════ Service Worker ═══════════ */
 if('serviceWorker' in navigator){
-  window.addEventListener('load', function(){
-    navigator.serviceWorker.register('sw.js').catch(function(e){
-      console.log('SW Academia no se registro:', e);
-    });
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('sw.js').catch(function(e){ console.log('SW:',e); });
   });
 }
 
-// Al arrancar: dejar lista la primera lección (o la última escuchada), sin reproducir
-(function init(){
-  if(!synth){ mostrarAviso('Este teléfono no soporta lectura por voz en el navegador. Prueba con Chrome.'); }
-  renderLista();
-  var guardada = 0;
-  try{ var g = localStorage.getItem('nbs_academia_leccion'); if(g!==null) guardada = parseInt(g,10)||0; }catch(e){}
-  cargarLeccion(guardada, false);
-})();
+/* ═══════════ Arranque ═══════════ */
+pintarProgreso(); pintarStats();
+cargar(LS('nbsa_ultima',0), false);
 </script>
 </body>
 </html>
