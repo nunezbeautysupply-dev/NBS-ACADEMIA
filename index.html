@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="app-version" content="20260722b-ACADEMIA-V3.0">
+<meta name="app-version" content="20260722c-ACADEMIA-V3.1">
 <title>NBS Academia</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0f1430">
@@ -28,6 +28,13 @@
   .bsec:active{background:#39439a}
   .bplay{width:84px;height:84px;border-radius:50%;background:linear-gradient(145deg,#f0c04a,#d99b1f);border:none;color:#161d44;font-size:36px;cursor:pointer;box-shadow:0 5px 16px rgba(227,178,60,.45);display:flex;align-items:center;justify-content:center}
   .bplay:active{transform:scale(.96)}
+  .bsalto{position:relative;width:52px;height:52px;font-size:22px}
+  .bsalto span{position:absolute;font-size:9.5px;font-weight:800;top:20px;left:0;right:0;text-align:center}
+  .rango{width:100%;margin:12px 0 0;height:26px;background:transparent;-webkit-appearance:none;appearance:none}
+  .rango::-webkit-slider-runnable-track{height:7px;background:#2c356f;border-radius:5px}
+  .rango::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#E3B23C;margin-top:-8px;border:2px solid #161d44}
+  .rango::-moz-range-track{height:7px;background:#2c356f;border-radius:5px}
+  .rango::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#E3B23C;border:2px solid #161d44}
   .nota-pant{text-align:center;font-size:12px;color:#8a92bd;margin-top:8px}
 
   .chips{display:flex;gap:7px;justify-content:center;margin-top:12px;flex-wrap:wrap}
@@ -113,9 +120,15 @@
   <div id="ptit" class="tit">Toca una leccion</div>
   <div id="psub" class="sub">&nbsp;</div>
   <div class="ctrl">
-    <button class="bsec" id="bant">&#9198;</button>
+    <button class="bsec" id="bant" title="Leccion anterior">&#9198;</button>
+    <button class="bsec bsalto" id="batras" title="Retroceder 15 segundos">&#8630;<span>15</span></button>
     <button class="bplay" id="bplay">&#9654;</button>
-    <button class="bsec" id="bsig">&#9197;</button>
+    <button class="bsec bsalto" id="badel" title="Adelantar 15 segundos">&#8631;<span>15</span></button>
+    <button class="bsec" id="bsig" title="Leccion siguiente">&#9197;</button>
+  </div>
+  <input type="range" id="pos" min="0" max="0" value="0" step="1" class="rango">
+  <div style="display:flex;justify-content:space-between;font-size:11.5px;color:#8a92bd;margin-top:-2px">
+    <span id="ttrans">0:00</span><span id="ttotal">0:00</span>
   </div>
   <div class="nota-pant" id="npant">La pantalla se mantiene encendida al reproducir</div>
   <div class="chips">
@@ -308,10 +321,46 @@ function subtit(){
   var mo = MODULOS.filter(function(m){return m.n===LEC[iLec].m;})[0];
   var tot=chunks.length||1;
   e.textContent = mo.nombre+'  \u00b7  Leccion '+(iLec+1)+' de '+LEC.length+'  \u00b7  parte '+Math.min(iCh+1,tot)+'/'+tot;
+  pintarPos();
 }
 function botonUI(){
   document.getElementById('bplay').innerHTML = tocando ? '&#9208;' : '&#9654;';
   pintarLista();
+}
+
+/* ═══════════ Retroceder / adelantar dentro de la leccion ═══════════ */
+/* Cada pedazo es una oracion. Se calcula cuantos segundos dura aproximadamente
+   por la cantidad de palabras, para poder saltar 15 segundos hacia atras o
+   hacia adelante como en un reproductor normal. */
+function segChunk(t){ return t.split(/\s+/).length / (2.6*vel); }
+function segHasta(n){ var s=0; for(var i=0;i<n && i<chunks.length;i++) s+=segChunk(chunks[i]); return s; }
+function mmss(s){ s=Math.max(0,Math.round(s)); var m=Math.floor(s/60); var q=s%60; return m+':'+(q<10?'0':'')+q; }
+
+function saltar(seg){
+  if(iLec<0 || !chunks.length) return;
+  var i = iCh, acum = 0;
+  if(seg < 0){
+    while(i > 0 && acum < -seg){ i--; acum += segChunk(chunks[i]); }
+  } else {
+    while(i < chunks.length-1 && acum < seg){ acum += segChunk(chunks[i]); i++; }
+  }
+  irAChunk(i);
+}
+function irAChunk(i){
+  if(i<0) i=0; if(i>chunks.length-1) i=chunks.length-1;
+  iCh = i; subtit();
+  if(tocando){
+    cancelM = true; try{ synth.cancel(); }catch(e){}
+    setTimeout(function(){ cancelM=false; hablar(); }, 150);
+  }
+}
+function pintarPos(){
+  var r=document.getElementById('pos');
+  if(!r) return;
+  r.max = Math.max(0, chunks.length-1);
+  r.value = Math.min(iCh, r.max);
+  document.getElementById('ttrans').textContent = mmss(segHasta(iCh));
+  document.getElementById('ttotal').textContent = mmss(segHasta(chunks.length));
 }
 
 /* ═══════════ Pintar ═══════════ */
@@ -624,6 +673,9 @@ function vigilarHora(){
 document.getElementById('bplay').onclick=function(){ tocando?pausar():tocar(); };
 document.getElementById('bsig').onclick=function(){ if(iLec<LEC.length-1) cargar(iLec+1,tocando); };
 document.getElementById('bant').onclick=function(){ if(iLec>0) cargar(iLec-1,tocando); };
+document.getElementById('batras').onclick=function(){ saltar(-15); };
+document.getElementById('badel').onclick=function(){ saltar(15); };
+document.getElementById('pos').oninput=function(){ irAChunk(parseInt(this.value,10)); };
 document.getElementById('babrir').onclick=verTexto;
 document.getElementById('bnota').onclick=verNota;
 document.getElementById('brepaso').onclick=verRepaso;
